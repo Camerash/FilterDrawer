@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">library</string>
+
+    <string name="apply_filter">APPLY</string>
+    <string name="reset_filter">RESET</string>
+
+    <string name="filters">Filters</string>
 </resources>
