@@ -144,13 +144,4 @@ class DrawerBuilder() {
 
         DrawerUtils.setLayoutGravity(filter, this.gravity)
     }
-
-    interface DefaultHeaderBinder {
-        fun getHeaderIcon(): Int
-        fun getHeaderTitle(): String
-    }
-
-    interface DefaultItemBinder {
-        fun getItemTitle(): String
-    }
 }
