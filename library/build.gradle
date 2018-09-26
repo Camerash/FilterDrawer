@@ -33,6 +33,7 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:28.0.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.mikepenz:materialize:1.1.2"
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
 }
 repositories {
     mavenCentral()

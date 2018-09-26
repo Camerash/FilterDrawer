@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.support.v4.widget.DrawerLayout
 import android.os.Build
+import android.support.v7.widget.RecyclerView
 import com.mikepenz.materialize.MaterializeBuilder
 
 
@@ -17,7 +18,7 @@ class DrawerBuilder() {
     private var rootView: ViewGroup? = null
     private var activity: Activity? = null
     private var drawerLayout: DrawerLayout? = null
-    private var transclucentStatusBar = true
+    private var translucentStatusBar = true
     private var displayBelowStatusBar = false
     private var fullscreen = false
     private var systemUIHidden = false
@@ -38,8 +39,8 @@ class DrawerBuilder() {
         return this
     }
 
-    fun setTransclucentStatusBar(enable: Boolean): DrawerBuilder {
-        this.transclucentStatusBar = enable
+    fun setTranslucentStatusBar(enable: Boolean): DrawerBuilder {
+        this.translucentStatusBar = enable
         return this
     }
 
@@ -113,7 +114,7 @@ class DrawerBuilder() {
             withFullscreen(fullscreen)
             withSystemUIHidden(systemUIHidden)
             withUseScrimInsetsLayout(false)
-            withTransparentStatusBar(transclucentStatusBar)
+            withTransparentStatusBar(translucentStatusBar)
             withContainer(drawerLayout)
             build()
         }
@@ -142,5 +143,14 @@ class DrawerBuilder() {
         val filter = act.layoutInflater.inflate(R.layout.filter_drawer, this.drawerLayout, false)
 
         DrawerUtils.setLayoutGravity(filter, this.gravity)
+    }
+
+    interface DefaultHeaderBinder {
+        fun getHeaderIcon(): Int
+        fun getHeaderTitle(): String
+    }
+
+    interface DefaultItemBinder {
+        fun getItemTitle(): String
     }
 }
