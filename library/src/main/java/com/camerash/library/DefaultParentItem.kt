@@ -58,8 +58,6 @@ abstract class DefaultParentItem: ParentItem() {
             headerText.text = getHeaderTitle()
         }
 
-        override fun onChildReselcted(parent: ParentItem, child: ChildItem) {}
-
         override fun onFilterReset(parent: ParentItem) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(Color.BLACK))
             headerText.setTextColor(Color.BLACK)

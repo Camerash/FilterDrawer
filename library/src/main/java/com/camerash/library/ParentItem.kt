@@ -16,16 +16,16 @@ abstract class ParentItem {
 
     abstract fun getToggleExpandOnClickViewId(): Int
 
-    abstract fun getChildCollection(): Collection<ChildItem>
+    abstract fun getChildCollection(): List<ChildItem>
 
     abstract fun getViewHolder(v: View): ViewHolder
 
     abstract inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         private var root: LinearLayout
-        protected var expandableView: ExpandableLayout = ExpandableLayout(v.context)
-        protected var recyclerView: RecyclerView = RecyclerView(v.context)
-        protected var headerView: View = itemView.findViewById(getToggleExpandOnClickViewId())
+        private var headerView: View = itemView.findViewById(getToggleExpandOnClickViewId())
+        var expandableView: ExpandableLayout = ExpandableLayout(v.context)
+        var recyclerView: RecyclerView = RecyclerView(v.context)
 
         init{
             try {
@@ -43,7 +43,7 @@ abstract class ParentItem {
             root.addView(expandableView, root.childCount, params)
         }
 
-        private fun bindView(parent: ParentItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>) {
+        internal fun bindView(parent: ParentItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>) {
             bindView(parent)
             // Construct filter recycler
             val llm = LinearLayoutManager(itemView.context)
@@ -61,7 +61,6 @@ abstract class ParentItem {
         abstract fun bindView(parent: ParentItem)
         abstract fun onChildSelected(parent: ParentItem, child: ChildItem, @ColorRes colorRes: Int)
         abstract fun onChildDeselcted(parent: ParentItem, child: ChildItem)
-        abstract fun onChildReselcted(parent: ParentItem, child: ChildItem)
         abstract fun onFilterReset(parent: ParentItem)
     }
 }
