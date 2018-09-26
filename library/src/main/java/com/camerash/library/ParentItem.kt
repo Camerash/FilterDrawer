@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import net.cachapa.expandablelayout.ExpandableLayout
 
-abstract class HeaderItem {
+abstract class ParentItem {
     abstract fun getLayoutRes(): Int
 
     abstract fun getRootLinearLayoutId(): Int
@@ -43,8 +43,8 @@ abstract class HeaderItem {
             root.addView(expandableView, root.childCount, params)
         }
 
-        private fun bindView(header: HeaderItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>) {
-            bindView(header)
+        private fun bindView(parent: ParentItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>) {
+            bindView(parent)
             // Construct filter recycler
             val llm = LinearLayoutManager(itemView.context)
             val did = DividerItemDecoration(itemView.context, llm.orientation)
@@ -58,10 +58,10 @@ abstract class HeaderItem {
             childAdapterList.add(adapterPosition, adapter)
         }
 
-        abstract fun bindView(header: HeaderItem)
-        abstract fun onChildSelected(header: HeaderItem, child: ChildItem, @ColorRes colorRes: Int)
-        abstract fun onChildDeselcted(header: HeaderItem, child: ChildItem)
-        abstract fun onChildReselcted(header: HeaderItem, child: ChildItem)
-        abstract fun onFilterReset(header: HeaderItem)
+        abstract fun bindView(parent: ParentItem)
+        abstract fun onChildSelected(parent: ParentItem, child: ChildItem, @ColorRes colorRes: Int)
+        abstract fun onChildDeselcted(parent: ParentItem, child: ChildItem)
+        abstract fun onChildReselcted(parent: ParentItem, child: ChildItem)
+        abstract fun onFilterReset(parent: ParentItem)
     }
 }

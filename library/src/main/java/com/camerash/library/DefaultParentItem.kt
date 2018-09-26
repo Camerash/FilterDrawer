@@ -10,27 +10,27 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-abstract class DefaultHeaderItem: HeaderItem() {
+abstract class DefaultParentItem: ParentItem() {
 
     abstract fun getHeaderIcon(): Int
 
     abstract fun getHeaderTitle(): String
 
     // Default implementation
-    override fun getLayoutRes(): Int = R.layout.default_filter_header
+    override fun getLayoutRes(): Int = R.layout.default_filter_parent
 
     override fun getRootLinearLayoutId(): Int = R.id.root_layout
 
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
 
-    inner class ViewHolder(v: View) : HeaderItem.ViewHolder(v) {
+    inner class ViewHolder(v: View) : ParentItem.ViewHolder(v) {
 
         private val headerIcon: AppCompatImageView = itemView.findViewById(R.id.header_icon)
         private val headerText: TextView = itemView.findViewById(R.id.header_text)
         private val headerLayout: CardView = itemView.findViewById(R.id.header)
         private val indicatorIcon: ImageView = itemView.findViewById(R.id.header_indicator)
 
-        override fun bindView(header: HeaderItem) {
+        override fun bindView(parent: ParentItem) {
             headerIcon.visibility = if(getHeaderIcon() != 0) {
                 headerIcon.setImageResource(getHeaderIcon())
                 View.VISIBLE
@@ -44,7 +44,7 @@ abstract class DefaultHeaderItem: HeaderItem() {
             expandableView.setOnExpansionUpdateListener(ExpandableLayoutIndicatorListener(indicatorIcon, 90))
         }
 
-        override fun onChildSelected(header: HeaderItem, child: ChildItem, colorRes: Int) {
+        override fun onChildSelected(parent: ParentItem, child: ChildItem, colorRes: Int) {
             val color = ContextCompat.getColor(itemView.context, colorRes)
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(color))
             headerText.setTextColor(color)
@@ -52,15 +52,15 @@ abstract class DefaultHeaderItem: HeaderItem() {
             expandableView.collapse()
         }
 
-        override fun onChildDeselcted(header: HeaderItem, child: ChildItem) {
+        override fun onChildDeselcted(parent: ParentItem, child: ChildItem) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(Color.BLACK))
             headerText.setTextColor(Color.BLACK)
             headerText.text = getHeaderTitle()
         }
 
-        override fun onChildReselcted(header: HeaderItem, child: ChildItem) {}
+        override fun onChildReselcted(parent: ParentItem, child: ChildItem) {}
 
-        override fun onFilterReset(header: HeaderItem) {
+        override fun onFilterReset(parent: ParentItem) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(Color.BLACK))
             headerText.setTextColor(Color.BLACK)
             headerText.text = getHeaderTitle()
