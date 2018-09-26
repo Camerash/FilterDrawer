@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/header_icon"
+                android:id="@+id/parent_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -28,7 +28,7 @@
                 app:srcCompat="@drawable/round_keyboard_arrow_right_24" />
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/header_indicator"
+                android:id="@+id/parent_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -38,7 +38,7 @@
                 app:srcCompat="@drawable/round_keyboard_arrow_right_24" />
 
             <TextView
-                android:id="@+id/header_text"
+                android:id="@+id/parent_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -46,10 +46,10 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/header_icon"
-                android:layout_toLeftOf="@id/header_indicator"
-                android:layout_toRightOf="@id/header_icon"
-                android:layout_toStartOf="@id/header_indicator"
+                android:layout_toEndOf="@id/parent_icon"
+                android:layout_toLeftOf="@id/parent_indicator"
+                android:layout_toRightOf="@id/parent_icon"
+                android:layout_toStartOf="@id/parent_indicator"
                 android:ellipsize="end"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />

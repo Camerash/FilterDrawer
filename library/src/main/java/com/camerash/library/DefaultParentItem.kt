@@ -12,10 +12,6 @@ import android.widget.TextView
 
 abstract class DefaultParentItem: ParentItem() {
 
-    abstract fun getHeaderIcon(): Int
-
-    abstract fun getHeaderTitle(): String
-
     // Default implementation
     override fun getLayoutRes(): Int = R.layout.default_filter_parent
 
@@ -25,26 +21,26 @@ abstract class DefaultParentItem: ParentItem() {
 
     inner class ViewHolder(v: View) : ParentItem.ViewHolder(v) {
 
-        private val headerIcon: AppCompatImageView = itemView.findViewById(R.id.header_icon)
-        private val headerText: TextView = itemView.findViewById(R.id.header_text)
-        private val headerLayout: CardView = itemView.findViewById(R.id.header)
-        private val indicatorIcon: ImageView = itemView.findViewById(R.id.header_indicator)
+        private val headerIcon: AppCompatImageView = itemView.findViewById(R.id.parent_icon)
+        private val headerText: TextView = itemView.findViewById(R.id.parent_text)
+        private val headerLayout: CardView = itemView.findViewById(R.id.parent)
+        private val indicatorIcon: ImageView = itemView.findViewById(R.id.parent_indicator)
 
         override fun bindView(parent: ParentItem) {
-            headerIcon.visibility = if(getHeaderIcon() != 0) {
-                headerIcon.setImageResource(getHeaderIcon())
+            headerIcon.visibility = if(parent.getParentIcon() != 0) {
+                headerIcon.setImageResource(parent.getParentIcon())
                 View.VISIBLE
             } else {
                 View.GONE
             }
 
-            headerText.text = getHeaderTitle()
+            headerText.text = parent.getParentTitle()
 
             headerLayout.setOnClickListener { expandableView.toggle() }
             expandableView.setOnExpansionUpdateListener(ExpandableLayoutIndicatorListener(indicatorIcon, 90))
         }
 
-        override fun onChildSelected(parent: ParentItem, child: ChildItem, colorRes: Int) {
+        override fun onChildSelect(parent: ParentItem, child: ChildItem, colorRes: Int) {
             val color = ContextCompat.getColor(itemView.context, colorRes)
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(color))
             headerText.setTextColor(color)
@@ -52,16 +48,16 @@ abstract class DefaultParentItem: ParentItem() {
             expandableView.collapse()
         }
 
-        override fun onChildDeselcted(parent: ParentItem, child: ChildItem) {
+        override fun onChildDeselect(parent: ParentItem, child: ChildItem) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(Color.BLACK))
             headerText.setTextColor(Color.BLACK)
-            headerText.text = getHeaderTitle()
+            headerText.text = parent.getParentTitle()
         }
 
-        override fun onFilterReset(parent: ParentItem) {
+        override fun onReset(parent: ParentItem) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(Color.BLACK))
             headerText.setTextColor(Color.BLACK)
-            headerText.text = getHeaderTitle()
+            headerText.text = parent.getParentTitle()
             expandableView.collapse()
         }
     }

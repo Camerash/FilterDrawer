@@ -34,14 +34,14 @@ class ParentAdapter(var parentItemList: List<ParentItem>) : RecyclerView.Adapter
 
                     if(selected) {
                         // One of the children selected
-                        vh.onChildSelected(parentItem, childItem, R.color.colorPrimary)
+                        vh.onChildSelect(parentItem, childItem, R.color.colorPrimary)
                     } else {
                         // One of the children deselected
-                        vh.onChildDeselcted(parentItem, childItem)
+                        vh.onChildDeselect(parentItem, childItem)
                     }
                 }
                 else -> // Reset triggered
-                    vh.onFilterReset(parentItem)
+                    vh.onReset(parentItem)
             }
         }
     }

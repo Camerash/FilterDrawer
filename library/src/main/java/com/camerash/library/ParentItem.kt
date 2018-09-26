@@ -10,6 +10,11 @@ import android.widget.LinearLayout
 import net.cachapa.expandablelayout.ExpandableLayout
 
 abstract class ParentItem {
+
+    abstract fun getParentIcon(): Int
+
+    abstract fun getParentTitle(): String
+
     abstract fun getLayoutRes(): Int
 
     abstract fun getRootLinearLayoutId(): Int
@@ -27,7 +32,7 @@ abstract class ParentItem {
         var expandableView: ExpandableLayout = ExpandableLayout(v.context)
         var recyclerView: RecyclerView = RecyclerView(v.context)
 
-        init{
+        init {
             try {
                 root = itemView.findViewById(getRootLinearLayoutId())
             } catch (e: ClassCastException) {
@@ -48,7 +53,7 @@ abstract class ParentItem {
             // Construct filter recycler
             val llm = LinearLayoutManager(itemView.context)
             val did = DividerItemDecoration(itemView.context, llm.orientation)
-            val adapter = ChildAdapter(getChildCollection())
+            val adapter = ChildAdapter(parent.getChildCollection())
             recyclerView.setRecycledViewPool(parentViewPool)
             recyclerView.layoutManager = llm
             recyclerView.addItemDecoration(did)
@@ -59,8 +64,8 @@ abstract class ParentItem {
         }
 
         abstract fun bindView(parent: ParentItem)
-        abstract fun onChildSelected(parent: ParentItem, child: ChildItem, @ColorRes colorRes: Int)
-        abstract fun onChildDeselcted(parent: ParentItem, child: ChildItem)
-        abstract fun onFilterReset(parent: ParentItem)
+        abstract fun onChildSelect(parent: ParentItem, child: ChildItem, @ColorRes colorRes: Int)
+        abstract fun onChildDeselect(parent: ParentItem, child: ChildItem)
+        abstract fun onReset(parent: ParentItem)
     }
 }
