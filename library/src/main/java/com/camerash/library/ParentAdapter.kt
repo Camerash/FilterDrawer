@@ -22,17 +22,17 @@ class ParentAdapter(var parentItemList: List<ParentItem>) : RecyclerView.Adapter
         val parentItem = parentItemList[position]
         val vh = holder as ParentItem.ViewHolder
 
-        if(payloads.isEmpty()) {
+        if (payloads.isEmpty()) {
             // Init ViewHolder for the first time
-            vh.bindView(parentItem, parentViewPool, childAdapterList)
+            vh.bindView(parentItem, parentViewPool, childAdapterList) { child, selected -> handleChildSelect(vh.adapterPosition, child, selected) }
         } else {
-            when(payloads.first()) {
+            when (payloads.first()) {
                 is Pair<*, *> -> {
                     val pair = payloads.first() as Pair<*, *>
                     val childItem = pair.first as ChildItem
                     val selected = pair.second as Boolean
 
-                    if(selected) {
+                    if (selected) {
                         // One of the children selected
                         vh.onChildSelect(parentItem, childItem, R.color.colorPrimary)
                     } else {
@@ -44,5 +44,14 @@ class ParentAdapter(var parentItemList: List<ParentItem>) : RecyclerView.Adapter
                     vh.onReset(parentItem)
             }
         }
+    }
+
+    private fun handleChildSelect(adapterPosition: Int, childItem: ChildItem, selected: Boolean) {
+        notifyItemChanged(adapterPosition, Pair(childItem, selected))
+    }
+
+    fun reset() {
+        childAdapterList.forEach{ it.reset() }
+        notifyItemRangeChanged(0, childAdapterList.size, true)
     }
 }

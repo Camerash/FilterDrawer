@@ -48,12 +48,12 @@ abstract class ParentItem {
             root.addView(expandableView, root.childCount, params)
         }
 
-        internal fun bindView(parent: ParentItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>) {
+        internal fun bindView(parent: ParentItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>, callback: (ChildItem, Boolean) -> Unit) {
             bindView(parent)
             // Construct filter recycler
             val llm = LinearLayoutManager(itemView.context)
             val did = DividerItemDecoration(itemView.context, llm.orientation)
-            val adapter = ChildAdapter(parent.getChildCollection())
+            val adapter = ChildAdapter(parent.getChildCollection()) { childItem, selected -> callback(childItem, selected) }
             recyclerView.setRecycledViewPool(parentViewPool)
             recyclerView.layoutManager = llm
             recyclerView.addItemDecoration(did)

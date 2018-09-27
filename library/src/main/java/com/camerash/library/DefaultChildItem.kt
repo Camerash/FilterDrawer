@@ -20,7 +20,7 @@ abstract class DefaultChildItem: ChildItem() {
             childText.setTextColor(Color.BLACK)
         }
 
-        override fun onSelect(child: ChildItem) {
+        override fun onSelect(child: ChildItem, colorRes: Int) {
             childText.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
             rootView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.selected_gray))
         }

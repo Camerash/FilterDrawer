@@ -1,5 +1,6 @@
 package com.camerash.library
 
+import android.support.annotation.ColorRes
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ abstract class ChildItem {
         }
 
         abstract fun bindView(child: ChildItem)
-        abstract fun onSelect(child: ChildItem)
+        abstract fun onSelect(child: ChildItem, @ColorRes colorRes: Int)
         abstract fun onDeselect(child: ChildItem)
         abstract fun onReset(child: ChildItem)
     }
