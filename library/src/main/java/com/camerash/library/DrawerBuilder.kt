@@ -1,15 +1,14 @@
 package com.camerash.library
 
 import android.app.Activity
+import android.os.Build
 import android.support.annotation.LayoutRes
 import android.support.annotation.MenuRes
 import android.support.annotation.NonNull
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.view.View
 import android.view.ViewGroup
-import android.support.v4.widget.DrawerLayout
-import android.os.Build
-import android.support.v7.widget.RecyclerView
 import com.mikepenz.materialize.MaterializeBuilder
 
 
@@ -17,7 +16,6 @@ class DrawerBuilder() {
 
     private var rootView: ViewGroup? = null
     private var activity: Activity? = null
-    private var drawerLayout: DrawerLayout? = null
     private var translucentStatusBar = true
     private var displayBelowStatusBar = false
     private var fullscreen = false
@@ -27,6 +25,9 @@ class DrawerBuilder() {
     private var toolbarMenuResId = 0
     private var gravity = GravityCompat.END
     private val customDrawerMap = mutableMapOf<Int, View>()
+
+    internal var drawerLayout: DrawerLayout? = null
+    internal var filterView: View? = null
 
     constructor(@NonNull act: Activity) : this() {
         this.activity = act
@@ -123,6 +124,8 @@ class DrawerBuilder() {
         addCustomDrawers()
 
         buildFilterDrawer()
+
+        return FilterDrawer(this)
     }
 
     private fun clearOverlapDrawers() {
@@ -140,8 +143,8 @@ class DrawerBuilder() {
 
     private fun buildFilterDrawer() {
         val act = activity ?: return
-        val filter = act.layoutInflater.inflate(R.layout.filter_drawer, this.drawerLayout, false)
+        filterView = act.layoutInflater.inflate(R.layout.filter_drawer, this.drawerLayout, false)
 
-        DrawerUtils.setLayoutGravity(filter, this.gravity)
+        filterView?.let { DrawerUtils.setLayoutGravity(it, this.gravity) }
     }
 }

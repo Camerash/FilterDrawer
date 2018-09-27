@@ -19,16 +19,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@drawable/divider_vertical_opaque_gray"
-            android:showDividers="middle"
+            android:gravity="end"
             android:orientation="horizontal"
             android:weightSum="1">
 
             <Button
                 android:id="@+id/filter_reset_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="16dp"
@@ -38,9 +36,8 @@
 
             <Button
                 android:id="@+id/filter_apply_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="16dp"
