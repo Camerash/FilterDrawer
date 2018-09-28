@@ -1,4 +1,4 @@
-package com.camerash.library
+package com.camerash.filterdrawer
 
 import android.support.annotation.MenuRes
 import android.support.v4.widget.DrawerLayout

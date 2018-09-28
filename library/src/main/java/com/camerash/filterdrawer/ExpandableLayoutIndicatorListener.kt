@@ -1,4 +1,4 @@
-package com.camerash.library
+package com.camerash.filterdrawer
 
 import android.widget.ImageView
 import net.cachapa.expandablelayout.ExpandableLayout

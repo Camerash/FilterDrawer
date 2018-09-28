@@ -1,4 +1,4 @@
-package com.camerash.library
+package com.camerash.filterdrawer
 
 import android.graphics.Color
 import android.support.v4.content.ContextCompat

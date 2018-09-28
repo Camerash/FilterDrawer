@@ -1,4 +1,4 @@
-package com.camerash.library
+package com.camerash.filterdrawer
 
 import android.support.annotation.ColorRes
 import android.support.v7.widget.DividerItemDecoration

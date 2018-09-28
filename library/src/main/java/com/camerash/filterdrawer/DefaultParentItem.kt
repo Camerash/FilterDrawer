@@ -1,4 +1,4 @@
-package com.camerash.library
+package com.camerash.filterdrawer
 
 import android.content.res.ColorStateList
 import android.graphics.Color

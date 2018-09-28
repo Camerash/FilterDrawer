@@ -1,4 +1,4 @@
-package com.camerash.library
+package com.camerash.filterdrawer
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

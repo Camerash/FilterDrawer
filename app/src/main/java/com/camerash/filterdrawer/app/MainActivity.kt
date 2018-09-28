@@ -1,7 +1,8 @@
-package com.camerash.filterdrawer
+package com.camerash.filterdrawer.app
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.camerash.filterdrawer.R
 
 class MainActivity : AppCompatActivity() {
 
