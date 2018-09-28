@@ -53,7 +53,7 @@ abstract class ParentItem {
             // Construct filter recycler
             val llm = LinearLayoutManager(itemView.context)
             val did = DividerItemDecoration(itemView.context, llm.orientation)
-            val adapter = ChildAdapter(parent.getChildCollection()) { childItem, selected -> callback(childItem, selected) }
+            val adapter = ChildAdapter(ArrayList(parent.getChildCollection())) { childItem, selected -> callback(childItem, selected) }
             recyclerView.setRecycledViewPool(parentViewPool)
             recyclerView.layoutManager = llm
             recyclerView.addItemDecoration(did)
