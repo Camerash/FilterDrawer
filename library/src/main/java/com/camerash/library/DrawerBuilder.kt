@@ -14,20 +14,28 @@ import com.mikepenz.materialize.MaterializeBuilder
 
 class DrawerBuilder() {
 
+    internal var activity: Activity? = null
+    internal var itemList = arrayListOf<ParentItem>()
+    internal var displayToolbar = true
+    internal var toolbarTitle = "Filters"
+    internal var toolbarMenuResId = 0
+
     private var rootView: ViewGroup? = null
-    private var activity: Activity? = null
     private var translucentStatusBar = true
     private var displayBelowStatusBar = false
     private var fullscreen = false
     private var systemUIHidden = false
-    private var displayToolbar = true
-    private var toolbarTitle = "Filters"
-    private var toolbarMenuResId = 0
     private var gravity = GravityCompat.END
+    private var drawerLockMode = DrawerLayout.LOCK_MODE_UNLOCKED
     private val customDrawerMap = mutableMapOf<Int, View>()
 
-    internal var drawerLayout: DrawerLayout? = null
-    internal var filterView: View? = null
+    var drawerListener: DrawerLayout.DrawerListener? = null
+    var childListener: FilterDrawer.OnChildSelectListener? = null
+    var filterControlClickListener: FilterDrawer.OnFilterControlClickListener? = null
+
+    private var drawerLayout: DrawerLayout? = null
+    private var filterView: View? = null
+
 
     constructor(@NonNull act: Activity) : this() {
         this.activity = act
@@ -60,7 +68,6 @@ class DrawerBuilder() {
         return this
     }
 
-
     fun displayToolbar(display: Boolean): DrawerBuilder {
         this.displayToolbar = display
         return this
@@ -83,9 +90,18 @@ class DrawerBuilder() {
         return this
     }
 
+    fun setDrawerLockMode(lockMode: Int): DrawerBuilder {
+        this.drawerLockMode = lockMode
+        return this
+    }
+
     fun appendCustomDrawer(view: View, gravity: Int): DrawerBuilder {
         this.customDrawerMap[gravity] = view // Use map here as each gravity can only host one drawer
         return this
+    }
+
+    fun withItems(items: Collection<ParentItem>) {
+        this.itemList = ArrayList(items)
     }
 
     fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder {
@@ -125,7 +141,14 @@ class DrawerBuilder() {
 
         buildFilterDrawer()
 
-        return FilterDrawer(this)
+        val finalDrawerLayout = drawerLayout
+        val finalFilterView = filterView
+
+        if(finalDrawerLayout == null || finalFilterView == null) {
+            throw IllegalArgumentException("Filter view or drawer layout not setup")
+        }
+
+        return FilterDrawer(this, finalDrawerLayout, finalFilterView)
     }
 
     private fun clearOverlapDrawers() {
@@ -134,7 +157,7 @@ class DrawerBuilder() {
 
     private fun addCustomDrawers() {
         val drawerLayout = this.drawerLayout ?: return
-        this.customDrawerMap.forEach { gravity, view ->
+        customDrawerMap.forEach { (gravity, view) ->
             drawerLayout.addView(view, 1)
 
             DrawerUtils.setLayoutGravity(view, gravity)
@@ -145,6 +168,9 @@ class DrawerBuilder() {
         val act = activity ?: return
         filterView = act.layoutInflater.inflate(R.layout.filter_drawer, this.drawerLayout, false)
 
-        filterView?.let { DrawerUtils.setLayoutGravity(it, this.gravity) }
+        filterView?.let {
+            DrawerUtils.setLayoutGravity(it, this.gravity)
+        drawerLayout?.setDrawerLockMode(drawerLockMode, it)
+        }
     }
 }

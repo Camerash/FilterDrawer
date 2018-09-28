@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ChildAdapter(var childItemList: List<ChildItem>, private val callback: (ChildItem, Boolean) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChildAdapter(var childItemList: ArrayList<ChildItem>, private val callback: (ChildItem, Boolean) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var selectedItem: Pair<Int, ChildItem>? = null
 

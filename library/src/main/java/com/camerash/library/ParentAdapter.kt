@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ParentAdapter(var parentItemList: List<ParentItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ParentAdapter(private var parentItemList: ArrayList<ParentItem>, var childSelectListener: FilterDrawer.OnChildSelectListener?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val parentViewPool = RecyclerView.RecycledViewPool()
     private val childAdapterList = arrayListOf<ChildAdapter>()
@@ -35,6 +35,7 @@ class ParentAdapter(var parentItemList: List<ParentItem>) : RecyclerView.Adapter
                     if (selected) {
                         // One of the children selected
                         vh.onChildSelect(parentItem, childItem, R.color.colorPrimary)
+                        childSelectListener?.onChildSelect(parentItem, childItem)
                     } else {
                         // One of the children deselected
                         vh.onChildDeselect(parentItem, childItem)
@@ -48,6 +49,11 @@ class ParentAdapter(var parentItemList: List<ParentItem>) : RecyclerView.Adapter
 
     private fun handleChildSelect(adapterPosition: Int, childItem: ChildItem, selected: Boolean) {
         notifyItemChanged(adapterPosition, Pair(childItem, selected))
+    }
+
+    fun updateItems(parentItemList: ArrayList<ParentItem>) {
+        this.parentItemList = parentItemList
+        notifyDataSetChanged()
     }
 
     fun reset() {
