@@ -90,6 +90,21 @@ class DrawerBuilder() {
         return this
     }
 
+    fun setChildListener(childListener: FilterDrawer.OnChildSelectListener): DrawerBuilder {
+        this.childListener = childListener
+        return this
+    }
+
+    fun setDrawerListener(drawerListener: DrawerLayout.DrawerListener): DrawerBuilder {
+        this.drawerListener = drawerListener
+        return this
+    }
+
+    fun setFilterControlClickListener(filterControlClickListener: FilterDrawer.OnFilterControlClickListener): DrawerBuilder {
+        this.filterControlClickListener = filterControlClickListener
+        return this
+    }
+
     fun setDrawerLockMode(lockMode: Int): DrawerBuilder {
         this.drawerLockMode = lockMode
         return this
@@ -105,11 +120,12 @@ class DrawerBuilder() {
     }
 
     fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder {
-        val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
+        val act = this.activity
+                ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
-        this.drawerLayout = when(resLayout) {
+        this.drawerLayout = when (resLayout) {
             -1 -> {
-                if(Build.VERSION.SDK_INT < 21)
+                if (Build.VERSION.SDK_INT < 21)
                     act.layoutInflater.inflate(R.layout.drawer_layout, rootView, false) as DrawerLayout
                 else
                     act.layoutInflater.inflate(R.layout.drawer_layout_fit_system_windows, rootView, false) as DrawerLayout
@@ -121,11 +137,12 @@ class DrawerBuilder() {
     }
 
     fun build(): FilterDrawer {
-        this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
+        this.activity
+                ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
-        if(this.drawerLayout == null) withDrawerLayout(-1)
+        if (this.drawerLayout == null) withDrawerLayout(-1)
 
-        with(MaterializeBuilder()){
+        with(MaterializeBuilder()) {
             withActivity(activity)
             withRootView(rootView)
             withFullscreen(fullscreen)
@@ -144,7 +161,7 @@ class DrawerBuilder() {
         val finalDrawerLayout = drawerLayout
         val finalFilterView = filterView
 
-        if(finalDrawerLayout == null || finalFilterView == null) {
+        if (finalDrawerLayout == null || finalFilterView == null) {
             throw IllegalArgumentException("Filter view or drawer layout not setup")
         }
 
@@ -167,10 +184,12 @@ class DrawerBuilder() {
     private fun buildFilterDrawer() {
         val act = activity ?: return
         filterView = act.layoutInflater.inflate(R.layout.filter_drawer, this.drawerLayout, false)
+        drawerLayout?.addView(filterView)
 
         filterView?.let {
             DrawerUtils.setLayoutGravity(it, this.gravity)
-        drawerLayout?.setDrawerLockMode(drawerLockMode, it)
+            drawerLayout?.setDrawerLockMode(drawerLockMode, it)
+            it.fitsSystemWindows = displayBelowStatusBar
         }
     }
 }

@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
-class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerLayout, filterView: View) {
+class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerLayout, val filterView: View) {
 
     val toolbar: Toolbar
     val toolbarTitle: TextView
@@ -54,7 +54,7 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
     }
 
     fun showToolbar(show: Boolean) {
-        toolbar.visibility = if(show) View.VISIBLE else View.GONE
+        toolbar.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     fun setToolbarTitle(title: String) {
@@ -62,6 +62,7 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
     }
 
     fun inflateToolbarMenu(@MenuRes menuRes: Int) {
+        if (menuRes == 0) return
         toolbar.inflateMenu(menuRes)
     }
 
@@ -84,6 +85,18 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
 
     fun setChildSelectListener(childSelectListener: OnChildSelectListener) {
         adapter.childSelectListener = childSelectListener
+    }
+
+    fun openFilterDrawer() {
+        drawerLayout.openDrawer(filterView)
+    }
+
+    fun closeFilterDrawer() {
+        drawerLayout.closeDrawer(filterView)
+    }
+
+    fun resetFilter() {
+        adapter.reset()
     }
 
     interface OnChildSelectListener {

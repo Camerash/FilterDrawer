@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/filter_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="end"
     android:background="@android:color/white">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v7.widget.CardView
-        tools:style="@style/CardView"
         android:id="@+id/filter_btn_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,18 +53,21 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/filter_btn_group">
+        android:layout_above="@id/filter_btn_group"
+        android:fitsSystemWindows="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true">
 
                 <TextView
                     android:id="@+id/toolbar_title"
@@ -84,5 +88,7 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+    </RelativeLayout>
 
-</RelativeLayout>
+
+</android.support.design.widget.NavigationView>
