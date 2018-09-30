@@ -115,8 +115,9 @@ class DrawerBuilder() {
         return this
     }
 
-    fun withItems(items: Collection<ParentItem>) {
+    fun withItems(items: Collection<ParentItem>): DrawerBuilder {
         this.itemList = ArrayList(items)
+        return this
     }
 
     fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder {
