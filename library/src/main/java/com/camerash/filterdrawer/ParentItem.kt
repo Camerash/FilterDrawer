@@ -1,6 +1,5 @@
 package com.camerash.filterdrawer
 
-import android.support.annotation.ColorRes
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -24,6 +23,14 @@ abstract class ParentItem {
     abstract fun getChildCollection(): List<ChildItem>
 
     abstract fun getViewHolder(v: View): ViewHolder
+
+    abstract fun getDefaultColorRes(): Int
+
+    abstract fun getSelectedColorRes(): Int
+
+    abstract fun getDefaultIconColorRes(): Int
+
+    abstract fun getSelectedIconColorRes(): Int
 
     abstract inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
@@ -64,7 +71,7 @@ abstract class ParentItem {
         }
 
         abstract fun bindView(parent: ParentItem)
-        abstract fun onChildSelect(parent: ParentItem, child: ChildItem, @ColorRes colorRes: Int)
+        abstract fun onChildSelect(parent: ParentItem, child: ChildItem)
         abstract fun onChildDeselect(parent: ParentItem, child: ChildItem)
         abstract fun onReset(parent: ParentItem)
     }

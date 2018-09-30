@@ -34,7 +34,7 @@ class ParentAdapter(private var parentItemList: ArrayList<ParentItem>, var child
 
                     if (selected) {
                         // One of the children selected
-                        vh.onChildSelect(parentItem, childItem, R.color.colorPrimary)
+                        vh.onChildSelect(parentItem, childItem)
                         childSelectListener?.onChildSelect(parentItem, childItem)
                     } else {
                         // One of the children deselected

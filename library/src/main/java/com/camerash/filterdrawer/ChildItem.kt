@@ -15,6 +15,14 @@ abstract class ChildItem {
 
     abstract fun getViewHolder(v: View): ViewHolder
 
+    abstract fun getDefaultColorRes(): Int
+
+    abstract fun getSelectedColorRes(): Int
+
+    abstract fun getDefaultBackgroundColorRes(): Int
+
+    abstract fun getSelectedBackgroundColorRes(): Int
+
     abstract inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         val rootView: ViewGroup = itemView.findViewById(getRootViewId())
