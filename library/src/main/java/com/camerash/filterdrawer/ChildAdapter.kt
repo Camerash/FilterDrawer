@@ -4,9 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ChildAdapter(var childItemList: ArrayList<ChildItem>, private val callback: (ChildItem, Boolean) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: ArrayList<Child>, private val callback: (ChildItem, Boolean) -> Unit)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
-    private var selectedItem: Pair<Int, ChildItem>? = null
+    private var selectedItem: Pair<Int, Child>? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         childItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_child, viewGroup, false))
@@ -39,7 +40,7 @@ class ChildAdapter(var childItemList: ArrayList<ChildItem>, private val callback
         }
     }
 
-    private fun onChildClicked(adapterPosition: Int, childItem: ChildItem) {
+    private fun onChildClicked(adapterPosition: Int, childItem: Child) {
         val item = selectedItem
         if (item == null) {
             // Item selected
@@ -68,6 +69,10 @@ class ChildAdapter(var childItemList: ArrayList<ChildItem>, private val callback
         selectedItem?.let {
             notifyItemChanged(it.first, RESET_FLAG)
         }
+    }
+
+    fun getSelectedChild(): Child? {
+        return selectedItem?.second
     }
 
     companion object {

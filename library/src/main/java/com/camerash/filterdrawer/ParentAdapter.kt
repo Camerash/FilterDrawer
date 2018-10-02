@@ -8,7 +8,7 @@ class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
     private val parentViewPool = RecyclerView.RecycledViewPool()
-    private val childAdapterList = arrayListOf<ChildAdapter>()
+    private val childAdapterList = arrayListOf<ChildAdapter<Parent, Child>>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             parentItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_parent, viewGroup, false))
@@ -53,6 +53,19 @@ class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>
 
     private fun handleChildSelect(adapterPosition: Int, childItem: ChildItem, selected: Boolean) {
         notifyItemChanged(adapterPosition, Pair(childItem, selected))
+    }
+
+    fun getSelectedChildren(): Map<Parent, Child> {
+        val map = mutableMapOf<Parent, Child>()
+
+        childAdapterList.forEach{
+            val selectedChild = it.getSelectedChild()
+            if(selectedChild != null) {
+                map[it.parent] = selectedChild
+            }
+        }
+
+        return map
     }
 
     fun updateItems(parentItemList: ArrayList<Parent>) {

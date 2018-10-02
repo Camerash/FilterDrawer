@@ -37,11 +37,15 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
     }
 
     override fun onChildSelect(parent: SampleParentItem, childItem: SampleChildItem) {
-        Log.d("selected", parent.type.name)
+        filterDrawer.getSelectedChildrens().forEach {
+            Log.d(it.key.type.name, it.value.name)
+        }
     }
 
     override fun onChildDeselect(parent: SampleParentItem, childItem: SampleChildItem) {
-        Log.d("deselected", parent.type.name)
+        filterDrawer.getSelectedChildrens().forEach {
+            Log.d(it.key.type.name, it.value.name)
+        }
     }
 
     override fun onReset() {
