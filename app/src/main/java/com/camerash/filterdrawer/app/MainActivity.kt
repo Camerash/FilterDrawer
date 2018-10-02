@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         val sampleItemList = constructSample()
 
         filterDrawer = DrawerBuilder(this)
-                .setTranslucentStatusBar(true)
-                .setDisplayBelowStatusBar(true)
                 .displayToolbar(true)
                 .setFilterControlClickListener(this)
                 .withItems(sampleItemList)
