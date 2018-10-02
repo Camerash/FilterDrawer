@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         filterDrawer = DrawerBuilder(this)
                 .setTranslucentStatusBar(true)
                 .setDisplayBelowStatusBar(true)
-                .displayToolbar(false)
+                .displayToolbar(true)
                 .setFilterControlClickListener(this)
                 .withItems(sampleItemList)
                 .build()
