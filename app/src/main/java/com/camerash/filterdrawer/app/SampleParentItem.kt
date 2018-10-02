@@ -14,7 +14,7 @@ class SampleParentItem(name: String, childList: ArrayList<SampleChildItem>): Def
         this.childList = childList
     }
 
-    override fun getParentIcon(): Int = R.drawable.round_work_24
+    override fun getParentIcon(): Int = R.drawable.round_pets_24
 
     override fun getParentTitle(): String = this.name
 
