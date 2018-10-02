@@ -40,10 +40,14 @@ class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>
                     } else {
                         // One of the children deselected
                         vh.onChildDeselect(parentItem, childItem)
+                        childSelectListener?.onChildDeselect(parentItem, childItem)
                     }
                 }
-                else -> // Reset triggered
+                else -> {
+                    // Reset triggered
                     vh.onReset(parentItem)
+                    childSelectListener?.onReset()
+                }
             }
         }
     }
