@@ -2,14 +2,15 @@ package com.camerash.filterdrawer.app
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.camerash.filterdrawer.DrawerBuilder
 import com.camerash.filterdrawer.FilterDrawer
 import com.camerash.filterdrawer.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListener {
+class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListener, FilterDrawer.OnChildSelectListener<SampleParentItem, SampleChildItem> {
 
-    private lateinit var filterDrawer: FilterDrawer
+    private lateinit var filterDrawer: FilterDrawer<SampleParentItem, SampleChildItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +20,10 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
 
         val sampleItemList = constructSample()
 
-        filterDrawer = DrawerBuilder(this)
+        filterDrawer = DrawerBuilder<SampleParentItem, SampleChildItem>(this)
                 .displayToolbar(true)
                 .setFilterControlClickListener(this)
+                .setChildSelectListener(this)
                 .withItems(sampleItemList)
                 .build()
     }
@@ -34,6 +36,18 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         filterDrawer.closeFilterDrawer()
     }
 
+    override fun onChildSelect(parent: SampleParentItem, childItem: SampleChildItem) {
+        Log.d("selected", parent.type.name)
+    }
+
+    override fun onChildDeselect(parent: SampleParentItem, childItem: SampleChildItem) {
+        Log.d("deselected", parent.type.name)
+    }
+
+    override fun onReset() {
+        Log.d("reset", "true")
+    }
+
     private fun constructSample(): ArrayList<SampleParentItem> {
         val animal1 = SampleChildItem("Cats")
         val animal2 = SampleChildItem("Dogs")
@@ -41,10 +55,13 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         val animal4 = SampleChildItem("Hamsters")
         val animal5 = SampleChildItem("Snakes")
 
-        val animalList = arrayListOf(animal1, animal2, animal3, animal4, animal5)
+        val pet = SampleParentItem(SampleParentItem.FilterType.Pet, R.drawable.round_pets_24, arrayListOf(animal1, animal2, animal3, animal4, animal5))
 
-        val pet = SampleParentItem("Pets", animalList)
-        val animal = SampleParentItem("Animals", animalList)
+        val size1 = SampleChildItem("Small")
+        val size2 = SampleChildItem("Medium")
+        val size3 = SampleChildItem("Large")
+
+        val animal = SampleParentItem(SampleParentItem.FilterType.Size, R.drawable.round_size_24, arrayListOf(size1, size2, size3))
 
         return arrayListOf(pet, animal)
     }

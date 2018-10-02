@@ -1,22 +1,17 @@
 package com.camerash.filterdrawer.app
 
+import android.support.annotation.DrawableRes
 import com.camerash.filterdrawer.ChildItem
 import com.camerash.filterdrawer.DefaultParentItem
 import com.camerash.filterdrawer.R
 
-class SampleParentItem(name: String, childList: ArrayList<SampleChildItem>): DefaultParentItem() {
+class SampleParentItem(val type: FilterType, @DrawableRes val icon: Int, val childList: ArrayList<SampleChildItem>): DefaultParentItem() {
 
-    var name = ""
-    var childList = arrayListOf<SampleChildItem>()
+    enum class FilterType { Pet, Size }
 
-    init {
-        this.name = name
-        this.childList = childList
-    }
+    override fun getParentIcon(): Int = this.icon
 
-    override fun getParentIcon(): Int = R.drawable.round_pets_24
-
-    override fun getParentTitle(): String = this.name
+    override fun getParentTitle(): String = this.type.name
 
     override fun getChildCollection(): List<ChildItem> = this.childList
 
