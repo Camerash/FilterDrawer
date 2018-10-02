@@ -17,7 +17,7 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
     val recyclerView: RecyclerView
     val resetBtn: Button
     val applyBtn: Button
-    val adapter = ParentAdapter(builder.itemList, builder.childListener)
+    val adapter = ParentAdapter(builder.itemList, builder.childSelectListener)
 
     init {
         toolbar = filterView.findViewById(R.id.toolbar)
