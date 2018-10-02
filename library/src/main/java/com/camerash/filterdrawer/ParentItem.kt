@@ -1,5 +1,7 @@
 package com.camerash.filterdrawer
 
+import android.support.annotation.ColorRes
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -72,5 +74,7 @@ abstract class ParentItem {
         abstract fun onChildSelect(parent: ParentItem, child: ChildItem)
         abstract fun onChildDeselect(parent: ParentItem, child: ChildItem)
         abstract fun onReset(parent: ParentItem)
+
+        fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)
     }
 }

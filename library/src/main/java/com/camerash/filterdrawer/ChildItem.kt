@@ -1,6 +1,7 @@
 package com.camerash.filterdrawer
 
 import android.support.annotation.ColorRes
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -36,5 +37,7 @@ abstract class ChildItem {
         abstract fun onSelect(child: ChildItem, @ColorRes colorRes: Int)
         abstract fun onDeselect(child: ChildItem)
         abstract fun onReset(child: ChildItem)
+
+        fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)
     }
 }

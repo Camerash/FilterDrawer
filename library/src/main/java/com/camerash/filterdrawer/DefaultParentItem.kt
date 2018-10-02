@@ -1,7 +1,6 @@
 package com.camerash.filterdrawer
 
 import android.content.res.ColorStateList
-import android.support.v4.content.ContextCompat
 import android.support.v4.widget.ImageViewCompat
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.CardView
@@ -20,9 +19,9 @@ abstract class DefaultParentItem: ParentItem() {
 
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
 
-    override fun getDefaultColorRes(): Int = android.R.color.black
+    override fun getDefaultColorRes(): Int = R.color.black
 
-    override fun getSelectedColorRes(): Int = android.R.color.holo_blue_dark
+    override fun getSelectedColorRes(): Int = R.color.dark_blue
 
     override fun getDefaultIconColorRes(): Int = getDefaultColorRes()
 
@@ -48,26 +47,26 @@ abstract class DefaultParentItem: ParentItem() {
             headerLayout.setOnClickListener { expandableView.toggle() }
             expandableView.setOnExpansionUpdateListener(ExpandableLayoutIndicatorListener(indicatorIcon, 90))
 
-            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getDefaultIconColorRes()))
-            headerText.setTextColor(getDefaultColorRes())
+            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
+            headerText.setTextColor(getColor(getDefaultColorRes()))
         }
 
         override fun onChildSelect(parent: ParentItem, child: ChildItem) {
-            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(ContextCompat.getColor(itemView.context, getSelectedIconColorRes())))
-            headerText.setTextColor(getSelectedColorRes())
+            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getSelectedIconColorRes())))
+            headerText.setTextColor(getColor(getSelectedColorRes()))
             headerText.text = child.getTitle()
             expandableView.collapse()
         }
 
         override fun onChildDeselect(parent: ParentItem, child: ChildItem) {
-            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getDefaultIconColorRes()))
-            headerText.setTextColor(getDefaultColorRes())
+            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
+            headerText.setTextColor(getColor(getDefaultColorRes()))
             headerText.text = parent.getParentTitle()
         }
 
         override fun onReset(parent: ParentItem) {
-            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getDefaultIconColorRes()))
-            headerText.setTextColor(getDefaultColorRes())
+            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
+            headerText.setTextColor(getColor(getDefaultColorRes()))
             headerText.text = parent.getParentTitle()
             expandableView.collapse()
         }
