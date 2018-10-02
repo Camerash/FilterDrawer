@@ -8,9 +8,8 @@ class ChildAdapter(var childItemList: ArrayList<ChildItem>, private val callback
 
     private var selectedItem: Pair<Int, ChildItem>? = null
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return childItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_child, viewGroup, false))
-    }
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        childItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_child, viewGroup, false))
 
     override fun getItemCount(): Int = childItemList.size
 

@@ -3,7 +3,6 @@ package com.camerash.filterdrawer
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
 import net.cachapa.expandablelayout.ExpandableLayout
@@ -49,10 +48,9 @@ abstract class ParentItem {
             expandableView.addView(recyclerView)
             headerView.setOnClickListener { expandableView.toggle() }
 
-            // TODO: remove params as linearlayout adds child at the bottom with the index specified like this
-            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            params.gravity = Gravity.BOTTOM
-            root.addView(expandableView, root.childCount, params)
+            root.addView(expandableView, root.childCount)
+            expandableView.collapse()
+            expandableView.orientation = ExpandableLayout.VERTICAL
         }
 
         internal fun bindView(parent: ParentItem, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter>, callback: (ChildItem, Boolean) -> Unit) {

@@ -9,9 +9,8 @@ class ParentAdapter(private var parentItemList: ArrayList<ParentItem>, var child
     private val parentViewPool = RecyclerView.RecycledViewPool()
     private val childAdapterList = arrayListOf<ChildAdapter>()
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return parentItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_parent, viewGroup, false))
-    }
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        parentItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_parent, viewGroup, false))
 
     override fun getItemCount(): Int = parentItemList.size
 
