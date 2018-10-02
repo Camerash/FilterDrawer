@@ -46,7 +46,6 @@ class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>
                 else -> {
                     // Reset triggered
                     vh.onReset(parentItem)
-                    childSelectListener?.onReset()
                 }
             }
         }
@@ -64,5 +63,6 @@ class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>
     fun reset() {
         childAdapterList.forEach { it.reset() }
         notifyItemRangeChanged(0, childAdapterList.size, true)
+        childSelectListener?.onReset()
     }
 }
