@@ -9,6 +9,4 @@ class SampleChildItem(name: String) : DefaultChildItem() {
     init { this.name = name }
 
     override fun getTitle(): String = this.name
-
-    override fun getSelectedColorRes(): Int = getSelectedColorRes()
 }
