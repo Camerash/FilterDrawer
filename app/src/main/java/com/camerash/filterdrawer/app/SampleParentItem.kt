@@ -16,9 +16,9 @@ class SampleParentItem(name: String, childList: ArrayList<SampleChildItem>): Def
 
     override fun getParentIcon(): Int = R.drawable.round_work_24
 
-    override fun getParentTitle(): String = name
+    override fun getParentTitle(): String = this.name
 
-    override fun getChildCollection(): List<ChildItem> = childList
+    override fun getChildCollection(): List<ChildItem> = this.childList
 
     override fun getSelectedColorRes(): Int = R.color.colorPrimary
 }
