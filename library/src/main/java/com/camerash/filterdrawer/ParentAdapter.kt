@@ -4,19 +4,21 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ParentAdapter(private var parentItemList: ArrayList<ParentItem>, var childSelectListener: FilterDrawer.OnChildSelectListener?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>, var childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>?)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
     private val parentViewPool = RecyclerView.RecycledViewPool()
     private val childAdapterList = arrayListOf<ChildAdapter>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        parentItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_parent, viewGroup, false))
+            parentItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_parent, viewGroup, false))
 
     override fun getItemCount(): Int = parentItemList.size
 
     // Leave empty as we will be using the method that receives payloads
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {}
 
+    @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>) {
         val parentItem = parentItemList[position]
         val vh = holder as ParentItem.ViewHolder
@@ -28,7 +30,7 @@ class ParentAdapter(private var parentItemList: ArrayList<ParentItem>, var child
             when (payloads.first()) {
                 is Pair<*, *> -> {
                     val pair = payloads.first() as Pair<*, *>
-                    val childItem = pair.first as ChildItem
+                    val childItem = pair.first as Child
                     val selected = pair.second as Boolean
 
                     if (selected) {
@@ -50,13 +52,13 @@ class ParentAdapter(private var parentItemList: ArrayList<ParentItem>, var child
         notifyItemChanged(adapterPosition, Pair(childItem, selected))
     }
 
-    fun updateItems(parentItemList: ArrayList<ParentItem>) {
+    fun updateItems(parentItemList: ArrayList<Parent>) {
         this.parentItemList = parentItemList
         notifyDataSetChanged()
     }
 
     fun reset() {
-        childAdapterList.forEach{ it.reset() }
+        childAdapterList.forEach { it.reset() }
         notifyItemRangeChanged(0, childAdapterList.size, true)
     }
 }

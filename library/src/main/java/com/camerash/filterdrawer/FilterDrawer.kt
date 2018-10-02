@@ -10,14 +10,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
-class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerLayout, val filterView: View) {
+class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Child>, val drawerLayout: DrawerLayout, val filterView: View) where Parent: ParentItem, Child: ChildItem {
 
     val toolbar: Toolbar
     val toolbarTitle: TextView
     val recyclerView: RecyclerView
     val resetBtn: Button
     val applyBtn: Button
-    val adapter = ParentAdapter(builder.itemList, builder.childSelectListener)
+    val adapter = ParentAdapter<Parent, Child>(builder.itemList, builder.childSelectListener)
 
     init {
         toolbar = filterView.findViewById(R.id.toolbar)
@@ -66,7 +66,7 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
         toolbar.inflateMenu(menuRes)
     }
 
-    fun updateItems(itemList: Collection<ParentItem>) {
+    fun updateItems(itemList: Collection<Parent>) {
         adapter.updateItems(ArrayList(itemList))
     }
 
@@ -83,7 +83,7 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
         applyBtn.setOnClickListener { filterControlClickListener.onApplyClick() }
     }
 
-    fun setChildSelectListener(childSelectListener: OnChildSelectListener) {
+    fun setChildSelectListener(childSelectListener: OnChildSelectListener<Parent, Child>) {
         adapter.childSelectListener = childSelectListener
     }
 
@@ -99,8 +99,8 @@ class FilterDrawer(private val builder: DrawerBuilder, val drawerLayout: DrawerL
         adapter.reset()
     }
 
-    interface OnChildSelectListener {
-        fun onChildSelect(parentItem: ParentItem, childItem: ChildItem)
+    interface OnChildSelectListener <Parent, Child> where Parent: ParentItem, Child: ChildItem {
+        fun onChildSelect(parent: Parent, childItem: Child)
     }
 
     interface OnFilterControlClickListener {

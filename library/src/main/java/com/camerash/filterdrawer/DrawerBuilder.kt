@@ -12,10 +12,10 @@ import android.view.ViewGroup
 import com.mikepenz.materialize.MaterializeBuilder
 
 
-class DrawerBuilder() {
+class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem {
 
     internal var activity: Activity? = null
-    internal var itemList = arrayListOf<ParentItem>()
+    internal var itemList = arrayListOf<Parent>()
     internal var displayToolbar = true
     internal var toolbarTitle = "Filters"
     internal var toolbarMenuResId = 0
@@ -30,7 +30,7 @@ class DrawerBuilder() {
     private val customDrawerMap = mutableMapOf<Int, View>()
 
     var drawerListener: DrawerLayout.DrawerListener? = null
-    var childSelectListener: FilterDrawer.OnChildSelectListener? = null
+    var childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>? = null
     var filterControlClickListener: FilterDrawer.OnFilterControlClickListener? = null
 
     private var drawerLayout: DrawerLayout? = null
@@ -42,85 +42,85 @@ class DrawerBuilder() {
         this.rootView = act.findViewById(android.R.id.content)
     }
 
-    fun with(@NonNull act: Activity): DrawerBuilder {
+    fun with(@NonNull act: Activity): DrawerBuilder<Parent, Child> {
         this.activity = act
         this.rootView = act.findViewById(android.R.id.content)
         return this
     }
 
-    fun setTranslucentStatusBar(enable: Boolean): DrawerBuilder {
+    fun setTranslucentStatusBar(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.translucentStatusBar = enable
         return this
     }
 
-    fun setDisplayBelowStatusBar(enable: Boolean): DrawerBuilder {
+    fun setDisplayBelowStatusBar(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.displayBelowStatusBar = enable
         return this
     }
 
-    fun setFullscreen(enable: Boolean): DrawerBuilder {
+    fun setFullscreen(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.fullscreen = enable
         return this
     }
 
-    fun setSystemUIHidden(enable: Boolean): DrawerBuilder {
+    fun setSystemUIHidden(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.systemUIHidden = enable
         return this
     }
 
-    fun displayToolbar(display: Boolean): DrawerBuilder {
+    fun displayToolbar(display: Boolean): DrawerBuilder<Parent, Child> {
         this.displayToolbar = display
         return this
     }
 
-    fun setToolbarTitle(title: String): DrawerBuilder {
+    fun setToolbarTitle(title: String): DrawerBuilder<Parent, Child> {
         this.displayToolbar(true)
         this.toolbarTitle = title
         return this
     }
 
-    fun setToolbarMenu(@MenuRes menuId: Int): DrawerBuilder {
+    fun setToolbarMenu(@MenuRes menuId: Int): DrawerBuilder<Parent, Child> {
         this.displayToolbar(true)
         this.toolbarMenuResId = menuId
         return this
     }
 
-    fun setGravity(gravity: Int): DrawerBuilder {
+    fun setGravity(gravity: Int): DrawerBuilder<Parent, Child> {
         this.gravity = gravity
         return this
     }
 
-    fun setChildSelectListener(childSelectListener: FilterDrawer.OnChildSelectListener): DrawerBuilder {
+    fun setChildSelectListener(childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>): DrawerBuilder<Parent, Child> {
         this.childSelectListener = childSelectListener
         return this
     }
 
-    fun setDrawerListener(drawerListener: DrawerLayout.DrawerListener): DrawerBuilder {
+    fun setDrawerListener(drawerListener: DrawerLayout.DrawerListener): DrawerBuilder<Parent, Child> {
         this.drawerListener = drawerListener
         return this
     }
 
-    fun setFilterControlClickListener(filterControlClickListener: FilterDrawer.OnFilterControlClickListener): DrawerBuilder {
+    fun setFilterControlClickListener(filterControlClickListener: FilterDrawer.OnFilterControlClickListener): DrawerBuilder<Parent, Child> {
         this.filterControlClickListener = filterControlClickListener
         return this
     }
 
-    fun setDrawerLockMode(lockMode: Int): DrawerBuilder {
+    fun setDrawerLockMode(lockMode: Int): DrawerBuilder<Parent, Child> {
         this.drawerLockMode = lockMode
         return this
     }
 
-    fun appendCustomDrawer(view: View, gravity: Int): DrawerBuilder {
+    fun appendCustomDrawer(view: View, gravity: Int): DrawerBuilder<Parent, Child> {
         this.customDrawerMap[gravity] = view // Use map here as each gravity can only host one drawer
         return this
     }
 
-    fun withItems(items: Collection<ParentItem>): DrawerBuilder {
+    fun withItems(items: Collection<Parent>): DrawerBuilder<Parent, Child> {
         this.itemList = ArrayList(items)
         return this
     }
 
-    fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder {
+    fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder<Parent, Child> {
         val act = this.activity
                 ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
@@ -137,7 +137,7 @@ class DrawerBuilder() {
         return this
     }
 
-    fun build(): FilterDrawer {
+    fun build(): FilterDrawer<Parent, Child> {
         this.activity
                 ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
