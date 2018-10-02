@@ -9,6 +9,11 @@ class SampleParentItem(name: String, childList: ArrayList<SampleChildItem>): Def
     var name = ""
     var childList = arrayListOf<SampleChildItem>()
 
+    init {
+        this.name = name
+        this.childList = childList
+    }
+
     override fun getParentIcon(): Int = R.drawable.round_work_24
 
     override fun getParentTitle(): String = name
