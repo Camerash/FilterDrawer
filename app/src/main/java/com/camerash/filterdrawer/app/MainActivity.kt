@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         filterDrawer = DrawerBuilder<SampleParentItem, SampleChildItem>(this)
                 .displayToolbar(true)
                 .setFilterControlClickListener(this)
-                .setChildSelectListener(this)
+                .addChildSelectListener(this)
                 .withItems(sampleItemList)
                 .build()
     }
