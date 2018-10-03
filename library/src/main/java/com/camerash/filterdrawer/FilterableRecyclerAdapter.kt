@@ -3,8 +3,8 @@ package com.camerash.filterdrawer
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 
-abstract class FilterableRecyclerAdapter<Parent, Child, Data> :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>(), FilterDrawer.OnChildSelectListener<Parent, Child>, RecyclerAdapterFilter<Parent, Child, Data> where Parent : ParentItem, Child : ChildItem {
+abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
+        RecyclerView.Adapter<RecyclerView.ViewHolder>(), FilterDrawer.OnChildSelectListener<Parent, Child>, RecyclerAdapterFilter<Data, Parent, Child> where Parent : ParentItem, Child : ChildItem {
 
     abstract val dataList: List<Data>
     private var filteredDataList = listOf<Data>()
@@ -15,9 +15,9 @@ abstract class FilterableRecyclerAdapter<Parent, Child, Data> :
         filterDrawer.addChildSelectListener(this)
     }
 
-    final override fun onChildSelect(parent: Parent, childItem: Child) = filter()
+    final override fun onChildSelect(parent: Parent, child: Child) = filter()
 
-    final override fun onChildDeselect(parent: Parent, childItem: Child) = filter()
+    final override fun onChildDeselect(parent: Parent, child: Child) = filter()
 
     final override fun onReset() = filter()
 
