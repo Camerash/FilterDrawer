@@ -15,11 +15,22 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
         filterDrawer.addChildSelectListener(this)
     }
 
+    fun unbindFilterDrawer() {
+        val fd = filterDrawer ?: return
+        fd.removeChildSelectListener(this)
+        filterDrawer = null
+    }
+
     final override fun onChildSelect(parent: Parent, child: Child) = filter()
 
     final override fun onChildDeselect(parent: Parent, child: Child) = filter()
 
     final override fun onReset() = filter()
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        unbindFilterDrawer()
+    }
 
     private fun filter() {
         val fd = filterDrawer ?: return
