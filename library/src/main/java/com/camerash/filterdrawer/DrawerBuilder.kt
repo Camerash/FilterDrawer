@@ -15,7 +15,7 @@ import com.mikepenz.materialize.MaterializeBuilder
 class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem {
 
     internal var activity: Activity? = null
-    internal var itemList = arrayListOf<Parent>()
+    internal var itemList = listOf<Parent>()
     internal var displayToolbar = true
     internal var toolbarTitle = "Filters"
     internal var toolbarMenuResId = 0

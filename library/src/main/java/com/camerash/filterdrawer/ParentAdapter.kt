@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>, var childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>?)
+class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
     private val parentViewPool = RecyclerView.RecycledViewPool()
@@ -68,7 +68,7 @@ class ParentAdapter<Parent, Child>(private var parentItemList: ArrayList<Parent>
         return map
     }
 
-    fun updateItems(parentItemList: ArrayList<Parent>) {
+    fun updateItems(parentItemList: List<Parent>) {
         this.parentItemList = parentItemList
         notifyDataSetChanged()
     }
