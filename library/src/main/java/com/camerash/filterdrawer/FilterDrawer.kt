@@ -17,7 +17,7 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
     val recyclerView: RecyclerView
     val resetBtn: Button
     val applyBtn: Button
-    val adapter = ParentAdapter<Parent, Child>(builder.itemList, builder.childSelectListener)
+    val adapter = ParentAdapter(builder.itemList, builder.childSelectListenerList)
 
     init {
         toolbar = filterView.findViewById(R.id.toolbar)
@@ -83,8 +83,12 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
         applyBtn.setOnClickListener { filterControlClickListener.onApplyClick() }
     }
 
-    fun setChildSelectListener(childSelectListener: OnChildSelectListener<Parent, Child>) {
-        adapter.childSelectListener = childSelectListener
+    fun addChildSelectListener(childSelectListener: OnChildSelectListener<Parent, Child>) {
+        adapter.childSelectListenerList.add(childSelectListener)
+    }
+
+    fun removeChildSelectListener(childSelectListener: OnChildSelectListener<Parent, Child>) {
+        adapter.childSelectListenerList.remove(childSelectListener)
     }
 
     fun openFilterDrawer() {

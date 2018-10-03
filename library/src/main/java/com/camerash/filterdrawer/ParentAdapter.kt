@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>?)
+class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var childSelectListenerList: ArrayList<FilterDrawer.OnChildSelectListener<Parent, Child>>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
     private val parentViewPool = RecyclerView.RecycledViewPool()
@@ -36,11 +36,11 @@ class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var
                     if (selected) {
                         // One of the children selected
                         vh.onChildSelect(parentItem, childItem)
-                        childSelectListener?.onChildSelect(parentItem, childItem)
+                        childSelectListenerList.forEach { it.onChildSelect(parentItem, childItem) }
                     } else {
                         // One of the children deselected
                         vh.onChildDeselect(parentItem, childItem)
-                        childSelectListener?.onChildDeselect(parentItem, childItem)
+                        childSelectListenerList.forEach { it.onChildDeselect(parentItem, childItem) }
                     }
                 }
                 else -> {
@@ -76,6 +76,6 @@ class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var
     fun reset() {
         childAdapterList.forEach { it.reset() }
         notifyItemRangeChanged(0, childAdapterList.size, true)
-        childSelectListener?.onReset()
+        childSelectListenerList.forEach { it.onReset() }
     }
 }

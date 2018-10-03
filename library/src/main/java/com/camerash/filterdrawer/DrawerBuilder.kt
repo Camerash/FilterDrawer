@@ -30,7 +30,7 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
     private val customDrawerMap = mutableMapOf<Int, View>()
 
     var drawerListener: DrawerLayout.DrawerListener? = null
-    var childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>? = null
+    var childSelectListenerList = arrayListOf<FilterDrawer.OnChildSelectListener<Parent, Child>>()
     var filterControlClickListener: FilterDrawer.OnFilterControlClickListener? = null
 
     private var drawerLayout: DrawerLayout? = null
@@ -90,8 +90,8 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         return this
     }
 
-    fun setChildSelectListener(childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>): DrawerBuilder<Parent, Child> {
-        this.childSelectListener = childSelectListener
+    fun addChildSelectListener(childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>): DrawerBuilder<Parent, Child> {
+        this.childSelectListenerList.add(childSelectListener)
         return this
     }
 
