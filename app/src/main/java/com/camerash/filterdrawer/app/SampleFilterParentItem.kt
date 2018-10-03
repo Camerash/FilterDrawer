@@ -5,7 +5,7 @@ import com.camerash.filterdrawer.ChildItem
 import com.camerash.filterdrawer.DefaultParentItem
 import com.camerash.filterdrawer.R
 
-class SampleParentItem(val type: FilterType, @DrawableRes val icon: Int, val childList: ArrayList<SampleChildItem>): DefaultParentItem() {
+class SampleFilterParentItem(val type: FilterType, @DrawableRes val icon: Int, val childList: ArrayList<SampleFilterChildItem>): DefaultParentItem() {
 
     enum class FilterType { Pet, Size }
 

@@ -8,9 +8,9 @@ import com.camerash.filterdrawer.FilterDrawer
 import com.camerash.filterdrawer.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListener, FilterDrawer.OnChildSelectListener<SampleParentItem, SampleChildItem> {
+class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListener, FilterDrawer.OnChildSelectListener<SampleFilterParentItem, SampleFilterChildItem> {
 
-    private lateinit var filterDrawer: FilterDrawer<SampleParentItem, SampleChildItem>
+    private lateinit var filterDrawer: FilterDrawer<SampleFilterParentItem, SampleFilterChildItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
 
         val sampleItemList = constructSample()
 
-        filterDrawer = DrawerBuilder<SampleParentItem, SampleChildItem>(this)
+        filterDrawer = DrawerBuilder<SampleFilterParentItem, SampleFilterChildItem>(this)
                 .displayToolbar(true)
                 .setFilterControlClickListener(this)
                 .addChildSelectListener(this)
@@ -36,13 +36,13 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         filterDrawer.closeFilterDrawer()
     }
 
-    override fun onChildSelect(parent: SampleParentItem, childItem: SampleChildItem) {
+    override fun onChildSelect(parent: SampleFilterParentItem, childItem: SampleFilterChildItem) {
         filterDrawer.getSelectedChildrens().forEach {
             Log.d(it.key.type.name, it.value.name)
         }
     }
 
-    override fun onChildDeselect(parent: SampleParentItem, childItem: SampleChildItem) {
+    override fun onChildDeselect(parent: SampleFilterParentItem, childItem: SampleFilterChildItem) {
         filterDrawer.getSelectedChildrens().forEach {
             Log.d(it.key.type.name, it.value.name)
         }
@@ -52,20 +52,20 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         Log.d("reset", "true")
     }
 
-    private fun constructSample(): ArrayList<SampleParentItem> {
-        val animal1 = SampleChildItem("Cats")
-        val animal2 = SampleChildItem("Dogs")
-        val animal3 = SampleChildItem("Rabbits")
-        val animal4 = SampleChildItem("Hamsters")
-        val animal5 = SampleChildItem("Snakes")
+    private fun constructSample(): ArrayList<SampleFilterParentItem> {
+        val animal1 = SampleFilterChildItem("Cats")
+        val animal2 = SampleFilterChildItem("Dogs")
+        val animal3 = SampleFilterChildItem("Rabbits")
+        val animal4 = SampleFilterChildItem("Hamsters")
+        val animal5 = SampleFilterChildItem("Snakes")
 
-        val pet = SampleParentItem(SampleParentItem.FilterType.Pet, R.drawable.round_pets_24, arrayListOf(animal1, animal2, animal3, animal4, animal5))
+        val pet = SampleFilterParentItem(SampleFilterParentItem.FilterType.Pet, R.drawable.round_pets_24, arrayListOf(animal1, animal2, animal3, animal4, animal5))
 
-        val size1 = SampleChildItem("Small")
-        val size2 = SampleChildItem("Medium")
-        val size3 = SampleChildItem("Large")
+        val size1 = SampleFilterChildItem("Small")
+        val size2 = SampleFilterChildItem("Medium")
+        val size3 = SampleFilterChildItem("Large")
 
-        val animal = SampleParentItem(SampleParentItem.FilterType.Size, R.drawable.round_size_24, arrayListOf(size1, size2, size3))
+        val animal = SampleFilterParentItem(SampleFilterParentItem.FilterType.Size, R.drawable.round_size_24, arrayListOf(size1, size2, size3))
 
         return arrayListOf(pet, animal)
     }
