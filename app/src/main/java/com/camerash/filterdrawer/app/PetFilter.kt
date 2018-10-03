@@ -3,7 +3,7 @@ package com.camerash.filterdrawer.app
 import com.camerash.filterdrawer.DefaultChildItem
 import com.camerash.filterdrawer.R
 
-class SampleFilterChildItem(name: String) : DefaultChildItem() {
+class PetFilter(name: String) : DefaultChildItem() {
 
     var name = ""
 
