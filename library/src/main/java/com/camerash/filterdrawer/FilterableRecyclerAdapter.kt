@@ -37,7 +37,7 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
         filterWithFilterMap(fd.getSelectedChildrens())
     }
 
-    private fun filterWithFilterMap(filterMap: Map<Parent, Child>) {
+    private fun filterWithFilterMap(filterMap: Map<Parent, Set<Child>>) {
         filteredDataList = if(filterMap.isEmpty()) dataList else dataList.filter { filter(it, filterMap) }
         DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(dataList, filteredDataList)).dispatchUpdatesTo(this)
     }

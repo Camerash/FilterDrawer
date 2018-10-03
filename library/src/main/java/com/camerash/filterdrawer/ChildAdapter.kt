@@ -7,7 +7,7 @@ import android.view.ViewGroup
 class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Child>, private val callback: (ChildItem, Boolean) -> Unit)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
-    private var selectedItem: Pair<Int, Child>? = null
+    private var selectedItemMap = mutableMapOf<Int, Child>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         childItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_child, viewGroup, false))
@@ -41,38 +41,46 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
     }
 
     private fun onChildClicked(adapterPosition: Int, childItem: Child) {
-        val item = selectedItem
-        if (item == null) {
+        if (selectedItemMap.isEmpty()) {
             // Item selected
             notifyItemChanged(adapterPosition, true)
-            selectedItem = Pair(adapterPosition, childItem)
+            selectedItemMap[adapterPosition] = childItem
             callback(childItem, true)
         } else {
-            selectedItem = if (item.first == adapterPosition) {
+            val selectedChild = selectedItemMap[adapterPosition]
+            if (selectedChild != null) {
                 // Item deselected
                 notifyItemChanged(adapterPosition, false)
-                callback(item.second, false)
-                null
+                callback(selectedChild, false)
+                selectedItemMap.remove(adapterPosition)
             } else {
-                // New item selected
-                // Deselect old item first
-                notifyItemChanged(item.first, false)
+                // Select only one, and item map must contain one
+                if(!parent.allowSelectMultiple()) {
+                    // New item selected
+                    // Deselect old item first
+                    val lastSelectedIndex = selectedItemMap.iterator().next().key
+
+                    notifyItemChanged(lastSelectedIndex, false)
+                    selectedItemMap.remove(lastSelectedIndex)
+                }
                 // Select new item
                 notifyItemChanged(adapterPosition, true)
                 callback(childItem, true)
-                Pair(adapterPosition, childItem)
+                selectedItemMap[adapterPosition] = childItem
             }
         }
     }
 
     fun reset() {
-        selectedItem?.let {
-            notifyItemChanged(it.first, RESET_FLAG)
+        selectedItemMap.forEach {
+            notifyItemChanged(it.key, RESET_FLAG)
         }
     }
 
-    fun getSelectedChild(): Child? {
-        return selectedItem?.second
+    fun getSelectedChildSet(): Set<Child> {
+        val childSet = mutableSetOf<Child>()
+        selectedItemMap.forEach { childSet.add(it.value) }
+        return childSet
     }
 
     companion object {

@@ -33,6 +33,8 @@ abstract class ParentItem {
 
     abstract fun getSelectedIconColorRes(): Int
 
+    abstract fun allowSelectMultiple(): Boolean
+
     abstract inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         private var root: LinearLayout
@@ -62,7 +64,7 @@ abstract class ParentItem {
             // Construct filter recycler
             val llm = LinearLayoutManager(itemView.context)
             val did = DividerItemDecoration(itemView.context, llm.orientation)
-            val adapter = ChildAdapter<Parent, Child>(parent, ArrayList(parent.getChildCollection() as List<Child>)) { childItem, selected -> callback(childItem, selected) }
+            val adapter = ChildAdapter(parent, parent.getChildCollection() as List<Child>) { childItem, selected -> callback(childItem, selected) }
             recyclerView.setRecycledViewPool(parentViewPool)
             recyclerView.layoutManager = llm
             recyclerView.addItemDecoration(did)

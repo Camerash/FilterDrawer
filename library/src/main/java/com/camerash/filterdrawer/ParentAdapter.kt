@@ -55,14 +55,11 @@ class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var
         notifyItemChanged(adapterPosition, Pair(childItem, selected))
     }
 
-    fun getSelectedChildren(): Map<Parent, Child> {
-        val map = mutableMapOf<Parent, Child>()
+    fun getSelectedChildren(): Map<Parent, Set<Child>> {
+        val map = mutableMapOf<Parent, Set<Child>>()
 
         childAdapterList.forEach{
-            val selectedChild = it.getSelectedChild()
-            if(selectedChild != null) {
-                map[it.parent] = selectedChild
-            }
+            map[it.parent] = it.getSelectedChildSet()
         }
 
         return map

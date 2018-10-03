@@ -103,7 +103,7 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
         adapter.reset()
     }
 
-    fun getSelectedChildrens(): Map<Parent, Child> {
+    fun getSelectedChildrens(): Map<Parent, Set<Child>> {
         return adapter.getSelectedChildren()
     }
 
