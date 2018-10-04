@@ -37,15 +37,11 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
     }
 
     override fun onChildSelect(parent: PetFilterCategory, child: PetFilter) {
-        filterDrawer.getSelectedChildrens().forEach {
-            Log.d(it.key.type.name, it.value.name)
-        }
+        Log.d(parent.type.name, child.filter.name)
     }
 
     override fun onChildDeselect(parent: PetFilterCategory, child: PetFilter) {
-        filterDrawer.getSelectedChildrens().forEach {
-            Log.d(it.key.type.name, it.value.name)
-        }
+        Log.d(parent.type.name, child.filter.name)
     }
 
     override fun onReset() {
@@ -53,17 +49,17 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
     }
 
     private fun constructSample(): ArrayList<PetFilterCategory> {
-        val animal1 = PetFilter("Cats")
-        val animal2 = PetFilter("Dogs")
-        val animal3 = PetFilter("Rabbits")
-        val animal4 = PetFilter("Hamsters")
-        val animal5 = PetFilter("Snakes")
+        val animal1 = PetFilter(PetFilter.Kind.Cats)
+        val animal2 = PetFilter(PetFilter.Kind.Dogs)
+        val animal3 = PetFilter(PetFilter.Kind.Rabbits)
+        val animal4 = PetFilter(PetFilter.Kind.Hamsters)
+        val animal5 = PetFilter(PetFilter.Kind.Snakes)
 
-        val pet = PetFilterCategory(PetFilterCategory.FilterType.Pet, R.drawable.round_pets_24, arrayListOf(animal1, animal2, animal3, animal4, animal5))
+        val pet = PetFilterCategory(PetFilterCategory.FilterType.Kind, R.drawable.round_pets_24, arrayListOf(animal1, animal2, animal3, animal4, animal5))
 
-        val size1 = PetFilter("Small")
-        val size2 = PetFilter("Medium")
-        val size3 = PetFilter("Large")
+        val size1 = PetFilter(PetFilter.Size.Small)
+        val size2 = PetFilter(PetFilter.Size.Medium)
+        val size3 = PetFilter(PetFilter.Size.Large)
 
         val animal = PetFilterCategory(PetFilterCategory.FilterType.Size, R.drawable.round_size_24, arrayListOf(size1, size2, size3))
 

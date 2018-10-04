@@ -7,7 +7,7 @@ import com.camerash.filterdrawer.R
 
 class PetFilterCategory(val type: FilterType, @DrawableRes val icon: Int, val childList: ArrayList<PetFilter>): DefaultParentItem() {
 
-    enum class FilterType { Pet, Size }
+    enum class FilterType { Kind, Size }
 
     override fun getParentIcon(): Int = this.icon
 
@@ -16,4 +16,6 @@ class PetFilterCategory(val type: FilterType, @DrawableRes val icon: Int, val ch
     override fun getChildCollection(): List<ChildItem> = this.childList
 
     override fun getSelectedColorRes(): Int = R.color.colorPrimary
+
+    override fun allowSelectMultiple(): Boolean = true
 }
