@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-abstract class DefaultParentItem: ParentItem() {
+abstract class DefaultParentItem : ParentItem() {
 
     // Default implementation
     override fun getLayoutRes(): Int = R.layout.default_filter_parent
@@ -35,7 +35,7 @@ abstract class DefaultParentItem: ParentItem() {
         private val indicatorIcon: ImageView = itemView.findViewById(R.id.parent_indicator)
 
         override fun bindView(parent: ParentItem) {
-            headerIcon.visibility = if(parent.getParentIcon() != 0) {
+            headerIcon.visibility = if (parent.getParentIcon() != 0) {
                 headerIcon.setImageResource(parent.getParentIcon())
                 View.VISIBLE
             } else {
@@ -51,17 +51,19 @@ abstract class DefaultParentItem: ParentItem() {
             headerText.setTextColor(getColor(getDefaultColorRes()))
         }
 
-        override fun onChildSelect(parent: ParentItem, child: ChildItem) {
+        override fun onChildSelect(parent: ParentItem, childSet: Set<ChildItem>) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getSelectedIconColorRes())))
             headerText.setTextColor(getColor(getSelectedColorRes()))
-            headerText.text = child.getTitle()
-            expandableView.collapse()
+            headerText.text = childSet.joinToString{ it.getTitle() }
+            if (!allowSelectMultiple()) {
+                expandableView.collapse()
+            }
         }
 
-        override fun onChildDeselect(parent: ParentItem, child: ChildItem) {
+        override fun onChildDeselect(parent: ParentItem, childSet: Set<ChildItem>) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
             headerText.setTextColor(getColor(getDefaultColorRes()))
-            headerText.text = parent.getParentTitle()
+            headerText.text = if(childSet.isEmpty()) parent.getParentTitle() else childSet.joinToString{ it.getTitle() }
         }
 
         override fun onReset(parent: ParentItem) {

@@ -30,7 +30,7 @@ class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var
             when (payloads.first()) {
                 is Pair<*, *> -> {
                     val pair = payloads.first() as Pair<*, *>
-                    val childItem = pair.first as Child
+                    val childItem = pair.first as Set<Child>
                     val selected = pair.second as Boolean
 
                     if (selected) {
@@ -51,7 +51,7 @@ class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var
         }
     }
 
-    private fun handleChildSelect(adapterPosition: Int, childItem: ChildItem, selected: Boolean) {
+    private fun handleChildSelect(adapterPosition: Int, childItem: Set<Child>, selected: Boolean) {
         notifyItemChanged(adapterPosition, Pair(childItem, selected))
     }
 

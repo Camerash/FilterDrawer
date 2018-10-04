@@ -108,8 +108,8 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
     }
 
     interface OnChildSelectListener <Parent, Child> where Parent: ParentItem, Child: ChildItem {
-        fun onChildSelect(parent: Parent, child: Child)
-        fun onChildDeselect(parent: Parent, child: Child)
+        fun onChildSelect(parent: Parent, child: Set<Child>)
+        fun onChildDeselect(parent: Parent, child: Set<Child>)
         fun onReset()
     }
 

@@ -8,7 +8,7 @@ class FilterRecyclerViewDiffCallback<Data>(private val oldDataList: List<Data>, 
 
     override fun getNewListSize(): Int = newDataList.size
 
-    override fun areItemsTheSame(oldItemPos: Int, newItemPos: Int): Boolean = oldDataList[oldItemPos] == newDataList[newItemPos]
+    override fun areItemsTheSame(oldItemPos: Int, newItemPos: Int): Boolean = false
 
-    override fun areContentsTheSame(oldItemPos: Int, newItemPos: Int): Boolean = oldDataList[oldItemPos] == newDataList[newItemPos]
+    override fun areContentsTheSame(oldItemPos: Int, newItemPos: Int): Boolean = false
 }

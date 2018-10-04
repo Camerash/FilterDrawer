@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Child>, private val callback: (ChildItem, Boolean) -> Unit)
+class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Child>, private val callback: (Set<Child>, Boolean) -> Unit)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
     private var selectedItemMap = mutableMapOf<Int, Child>()
@@ -45,14 +45,14 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
             // Item selected
             notifyItemChanged(adapterPosition, true)
             selectedItemMap[adapterPosition] = childItem
-            callback(childItem, true)
+            callback(getSelectedChildSet(), true)
         } else {
             val selectedChild = selectedItemMap[adapterPosition]
             if (selectedChild != null) {
                 // Item deselected
                 notifyItemChanged(adapterPosition, false)
-                callback(selectedChild, false)
                 selectedItemMap.remove(adapterPosition)
+                callback(getSelectedChildSet(), false)
             } else {
                 // Select only one, and item map must contain one
                 if(!parent.allowSelectMultiple()) {
@@ -65,8 +65,8 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
                 }
                 // Select new item
                 notifyItemChanged(adapterPosition, true)
-                callback(childItem, true)
                 selectedItemMap[adapterPosition] = childItem
+                callback(getSelectedChildSet(), true)
             }
         }
     }
@@ -75,6 +75,7 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
         selectedItemMap.forEach {
             notifyItemChanged(it.key, RESET_FLAG)
         }
+        selectedItemMap.clear()
     }
 
     fun getSelectedChildSet(): Set<Child> {

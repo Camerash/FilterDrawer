@@ -58,7 +58,7 @@ abstract class ParentItem {
         }
 
         @Suppress("UNCHECKED_CAST")
-        internal fun <Parent, Child> bindView(parent: Parent, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter<Parent, Child>>, callback: (ChildItem, Boolean) -> Unit)
+        internal fun <Parent, Child> bindView(parent: Parent, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter<Parent, Child>>, callback: (Set<Child>, Boolean) -> Unit)
                 where Parent : ParentItem, Child : ChildItem {
             bindView(parent)
             // Construct filter recycler
@@ -75,8 +75,8 @@ abstract class ParentItem {
         }
 
         abstract fun bindView(parent: ParentItem)
-        abstract fun onChildSelect(parent: ParentItem, child: ChildItem)
-        abstract fun onChildDeselect(parent: ParentItem, child: ChildItem)
+        abstract fun onChildSelect(parent: ParentItem, childSet: Set<ChildItem>)
+        abstract fun onChildDeselect(parent: ParentItem, childSet: Set<ChildItem>)
         abstract fun onReset(parent: ParentItem)
 
         fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)

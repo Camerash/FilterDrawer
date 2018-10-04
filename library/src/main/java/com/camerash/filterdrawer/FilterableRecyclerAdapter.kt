@@ -2,12 +2,13 @@ package com.camerash.filterdrawer
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 
 abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
         RecyclerView.Adapter<RecyclerView.ViewHolder>(), FilterDrawer.OnChildSelectListener<Parent, Child>, RecyclerAdapterFilter<Data, Parent, Child> where Parent : ParentItem, Child : ChildItem {
 
     abstract val dataList: List<Data>
-    private var filteredDataList = listOf<Data>()
+    var filteredDataList = listOf<Data>()
     private var filterDrawer: FilterDrawer<Parent, Child>? = null
 
     fun bindFilterDrawer(filterDrawer: FilterDrawer<Parent, Child>) {
@@ -21,9 +22,9 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
         filterDrawer = null
     }
 
-    final override fun onChildSelect(parent: Parent, child: Child) = filter()
+    final override fun onChildSelect(parent: Parent, child: Set<Child>) = filter()
 
-    final override fun onChildDeselect(parent: Parent, child: Child) = filter()
+    final override fun onChildDeselect(parent: Parent, child: Set<Child>) = filter()
 
     final override fun onReset() = filter()
 
@@ -39,6 +40,7 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
 
     private fun filterWithFilterMap(filterMap: Map<Parent, Set<Child>>) {
         filteredDataList = if(filterMap.isEmpty()) dataList else dataList.filter { filter(it, filterMap) }
+        Log.d("filtered list size", filteredDataList.size.toString())
         DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(dataList, filteredDataList)).dispatchUpdatesTo(this)
     }
 

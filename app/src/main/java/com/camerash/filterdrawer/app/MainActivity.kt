@@ -75,13 +75,9 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         filterDrawer.closeFilterDrawer()
     }
 
-    override fun onChildSelect(parent: PetFilterCategory, child: PetFilter) {
-        Log.d(parent.type.name, child.filter.name)
-    }
+    override fun onChildSelect(parent: PetFilterCategory, child: Set<PetFilter>) {}
 
-    override fun onChildDeselect(parent: PetFilterCategory, child: PetFilter) {
-        Log.d(parent.type.name, child.filter.name)
-    }
+    override fun onChildDeselect(parent: PetFilterCategory, child: Set<PetFilter>) {}
 
     override fun onReset() {
         Log.d("reset", "true")
