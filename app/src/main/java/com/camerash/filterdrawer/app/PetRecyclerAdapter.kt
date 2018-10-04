@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.BindView
 import com.camerash.filterdrawer.FilterableRecyclerAdapter
 import com.camerash.filterdrawer.R
 
@@ -40,9 +39,9 @@ class PetRecyclerAdapter(override val dataList: List<Pet>) : FilterableRecyclerA
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        @BindView(R.id.name) lateinit var name: TextView
-        @BindView(R.id.kind) lateinit var kind: TextView
-        @BindView(R.id.size) lateinit var size: TextView
+        val name: TextView = itemView.findViewById(R.id.name)
+        val kind: TextView = itemView.findViewById(R.id.kind)
+        val size: TextView = itemView.findViewById(R.id.size)
 
         fun bindView(pet: Pet) {
             name.text = pet.name
