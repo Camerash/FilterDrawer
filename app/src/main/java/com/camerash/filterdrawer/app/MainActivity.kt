@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
     private fun constructPetItems(): ArrayList<Pet> {
         return arrayListOf(
                 Pet("Pembroke Welsh Corgi", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/WelshCorgi.jpeg/482px-WelshCorgi.jpeg", PetFilter.Kind.Dogs, PetFilter.Size.Medium),
-                Pet("British Shorthair Cat", "", PetFilter.Kind.Cats, PetFilter.Size.Medium),
-                Pet("Netherland Dwarf Rabbit", "", PetFilter.Kind.Rabbits, PetFilter.Size.Small)
+                Pet("British Shorthair Cat", "https://cdn1-www.cattime.com/assets/uploads/gallery/british-shorthair-cats-and-kittens/british-shorthair-cats-and-kittens-5.jpg", PetFilter.Kind.Cats, PetFilter.Size.Medium),
+                Pet("Netherland Dwarf Rabbit", "https://cf.ltkcdn.net/small-pets/images/orig/204252-1697x1131-dwarf-rabbit_new.jpg", PetFilter.Kind.Rabbits, PetFilter.Size.Small)
         )
     }
 
