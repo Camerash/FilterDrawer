@@ -2,7 +2,6 @@ package com.camerash.filterdrawer
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 
 abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
         RecyclerView.Adapter<RecyclerView.ViewHolder>(), FilterDrawer.OnChildSelectListener<Parent, Child>, RecyclerAdapterFilter<Data, Parent, Child> where Parent : ParentItem, Child : ChildItem {
@@ -39,9 +38,17 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
     }
 
     private fun filterWithFilterMap(filterMap: Map<Parent, Set<Child>>) {
-        filteredDataList = if(filterMap.isEmpty()) dataList else dataList.filter { filter(it, filterMap) }
-        Log.d("filtered list size", filteredDataList.size.toString())
-        DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(dataList, filteredDataList)).dispatchUpdatesTo(this)
+        filteredDataList = if(filterMap.isEmpty()) dataList else dataList.filter { filterData(it, filterMap) }
+        val diff = DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(dataList, filteredDataList))
+        diff.dispatchUpdatesTo(this)
+    }
+
+    private fun filterData(data: Data, filterMap: Map<Parent, Set<Child>>): Boolean {
+        // Immediately filter out the data if it doesn't match one of the categories
+        filterMap.forEach { (parent, childSet) ->
+            childSet.firstOrNull { filter(data, parent, it) } ?: return false
+        }
+        return true
     }
 
 }
