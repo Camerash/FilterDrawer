@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liuguangqiang.swipeback.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_dismiss_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/opaque_black">
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:transitionName="@string/photo_transition_name"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"
+        tools:ignore="UnusedAttribute" />
+
+</com.liuguangqiang.swipeback.SwipeBackLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FilterDrawer</string>
+
+    <string name="photo_transition_name">photo</string>
 </resources>

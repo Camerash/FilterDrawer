@@ -1,8 +1,12 @@
 package com.camerash.filterdrawer.app
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.ImageView
 import com.camerash.filterdrawer.DrawerBuilder
 import com.camerash.filterdrawer.FilterDrawer
 import com.camerash.filterdrawer.R
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
     }
 
     private fun initRecyclerView() {
-        val adapter = PetRecyclerAdapter(constructPetItems())
+        val adapter = PetRecyclerAdapter(constructPetItems()) { url, imageView -> startPhotoViewingActivity(url, imageView) }
         adapter.bindFilterDrawer(filterDrawer)
 
         recycler_view.layoutManager = LinearLayoutManager(this)
@@ -58,6 +62,18 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
                 Pet("Djungarian hamster", "https://upload.wikimedia.org/wikipedia/commons/7/7a/PhodopusSungorus_1.jpg", PetFilter.Kind.Hamsters, PetFilter.Size.Small),
                 Pet("Hammond and Wrecking Ball", "https://fsmedia.imgix.net/24/45/aa/0a/ec69/46fe/8a65/2701be933c83.jpeg", PetFilter.Kind.Hamsters, PetFilter.Size.Large)
         )
+    }
+
+    private fun startPhotoViewingActivity(url: String, imageView: ImageView) {
+        val intent = Intent(this, PhotoViewingActivity::class.java)
+        intent.putExtra(PhotoViewingActivity.PHOTO_URL_KEY, url)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, imageView, getString(R.string.photo_transition_name))
+            startActivity(intent, transitionActivityOptions.toBundle())
+        } else {
+            startActivity(intent)
+        }
     }
 
     override fun onResetClick() {

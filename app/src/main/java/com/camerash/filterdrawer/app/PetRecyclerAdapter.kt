@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
 import com.camerash.filterdrawer.FilterableRecyclerAdapter
 import com.camerash.filterdrawer.R
 
-class PetRecyclerAdapter(override var dataList: List<Pet>) : FilterableRecyclerAdapter<Pet, PetFilterCategory, PetFilter>() {
+class PetRecyclerAdapter(override var dataList: List<Pet>, val callback: (String, ImageView) -> Unit) : FilterableRecyclerAdapter<Pet, PetFilterCategory, PetFilter>() {
 
     override fun filter(data: Pet, parent: PetFilterCategory, child: PetFilter): Boolean {
         return child.filter == when (parent.type) {
@@ -41,6 +41,10 @@ class PetRecyclerAdapter(override var dataList: List<Pet>) : FilterableRecyclerA
             kind.text = pet.kind.name
             size.text = pet.size.name
             Glide.with(itemView.context).load(pet.imageUrl).transition(withCrossFade()).into(image)
+
+            itemView.setOnClickListener {
+                callback(pet.imageUrl, image)
+            }
         }
     }
 }
