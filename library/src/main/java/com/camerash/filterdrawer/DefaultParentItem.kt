@@ -54,16 +54,20 @@ abstract class DefaultParentItem : ParentItem() {
         override fun onChildSelect(parent: ParentItem, childSet: Set<ChildItem>) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getSelectedIconColorRes())))
             headerText.setTextColor(getColor(getSelectedColorRes()))
-            headerText.text = childSet.joinToString{ it.getTitle() }
+            headerText.text = if(childSet.size == parent.getChildCollection().size) "All" else childSet.joinToString{ it.getTitle() }
             if (!allowSelectMultiple()) {
                 expandableView.collapse()
             }
         }
 
         override fun onChildDeselect(parent: ParentItem, childSet: Set<ChildItem>) {
-            ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
-            headerText.setTextColor(getColor(getDefaultColorRes()))
-            headerText.text = if(childSet.isEmpty()) parent.getParentTitle() else childSet.joinToString{ it.getTitle() }
+            if(childSet.isEmpty()) {
+                ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
+                headerText.setTextColor(getColor(getDefaultColorRes()))
+                headerText.text = parent.getParentTitle()
+            } else {
+                headerText.text = childSet.joinToString{ it.getTitle() }
+            }
         }
 
         override fun onReset(parent: ParentItem) {

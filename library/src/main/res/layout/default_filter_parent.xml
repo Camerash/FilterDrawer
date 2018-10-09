@@ -50,7 +50,6 @@
                 android:layout_toLeftOf="@id/parent_indicator"
                 android:layout_toRightOf="@id/parent_icon"
                 android:layout_toStartOf="@id/parent_indicator"
-                android:ellipsize="end"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
