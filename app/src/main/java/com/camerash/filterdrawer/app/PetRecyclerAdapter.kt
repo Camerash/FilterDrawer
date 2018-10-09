@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.camerash.filterdrawer.FilterableRecyclerAdapter
 import com.camerash.filterdrawer.R
 
-class PetRecyclerAdapter(override val dataList: List<Pet>) : FilterableRecyclerAdapter<Pet, PetFilterCategory, PetFilter>() {
+class PetRecyclerAdapter(override var dataList: List<Pet>) : FilterableRecyclerAdapter<Pet, PetFilterCategory, PetFilter>() {
 
     override fun filter(data: Pet, parent: PetFilterCategory, child: PetFilter): Boolean {
         return child.filter == when (parent.type) {
@@ -20,11 +20,11 @@ class PetRecyclerAdapter(override val dataList: List<Pet>) : FilterableRecyclerA
     override fun onCreateViewHolder(container: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             ViewHolder(LayoutInflater.from(container.context).inflate(R.layout.item_pet, container, false))
 
-    override fun getItemCount(): Int = filteredDataList.size
+    override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val vh = viewHolder as ViewHolder
-        val pet = filteredDataList[position]
+        val pet = dataList[position]
 
         vh.bindView(pet)
     }

@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
         RecyclerView.Adapter<RecyclerView.ViewHolder>(), FilterDrawer.OnChildSelectListener<Parent, Child>, RecyclerAdapterFilter<Data, Parent, Child> where Parent : ParentItem, Child : ChildItem {
 
-    abstract val dataList: List<Data>
-    var filteredDataList = listOf<Data>()
+    abstract var dataList: List<Data>
+    private val refDataList by lazy { dataList } // Reference data list for comparing filter
     private var filterDrawer: FilterDrawer<Parent, Child>? = null
 
     fun bindFilterDrawer(filterDrawer: FilterDrawer<Parent, Child>) {
@@ -38,8 +38,8 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
     }
 
     private fun filterWithFilterMap(filterMap: Map<Parent, Set<Child>>) {
-        filteredDataList = if(filterMap.isEmpty()) dataList else dataList.filter { filterData(it, filterMap) }
-        val diff = DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(dataList, filteredDataList))
+        dataList = if(filterMap.isEmpty()) refDataList else refDataList.filter { filterData(it, filterMap) }
+        val diff = DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(refDataList, dataList))
         diff.dispatchUpdatesTo(this)
     }
 
