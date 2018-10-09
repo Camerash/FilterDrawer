@@ -23,8 +23,6 @@ class PetRecyclerAdapter(override var dataList: List<Pet>) : FilterableRecyclerA
     override fun onCreateViewHolder(container: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             ViewHolder(LayoutInflater.from(container.context).inflate(R.layout.item_pet, container, false))
 
-    override fun getItemCount(): Int = dataList.size
-
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val vh = viewHolder as ViewHolder
         val pet = dataList[position]
