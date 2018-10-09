@@ -53,7 +53,10 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
         return arrayListOf(
                 Pet("Pembroke Welsh Corgi", "https://www.dogbreedslist.info/uploads/allimg/dog-pictures/Pembroke-Welsh-Corgi-2.jpg", PetFilter.Kind.Dogs, PetFilter.Size.Medium),
                 Pet("British Shorthair Cat", "https://cdn1-www.cattime.com/assets/uploads/gallery/british-shorthair-cats-and-kittens/british-shorthair-cats-and-kittens-5.jpg", PetFilter.Kind.Cats, PetFilter.Size.Medium),
-                Pet("Netherland Dwarf Rabbit", "https://cf.ltkcdn.net/small-pets/images/orig/204252-1697x1131-dwarf-rabbit_new.jpg", PetFilter.Kind.Rabbits, PetFilter.Size.Small)
+                Pet("Netherland Dwarf Rabbit", "https://cf.ltkcdn.net/small-pets/images/orig/204252-1697x1131-dwarf-rabbit_new.jpg", PetFilter.Kind.Rabbits, PetFilter.Size.Small),
+                Pet("Lovebird (Agapornis)", "https://www.chewy.com/petcentral/wp-content/uploads/2014/05/lovebirds-497303431-800x450.jpg", PetFilter.Kind.Birds, PetFilter.Size.Small),
+                Pet("Djungarian hamster", "https://upload.wikimedia.org/wikipedia/commons/7/7a/PhodopusSungorus_1.jpg", PetFilter.Kind.Hamsters, PetFilter.Size.Small),
+                Pet("Hammond and Wrecking Ball", "https://fsmedia.imgix.net/24/45/aa/0a/ec69/46fe/8a65/2701be933c83.jpeg", PetFilter.Kind.Hamsters, PetFilter.Size.Large)
         )
     }
 
