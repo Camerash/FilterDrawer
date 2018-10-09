@@ -30,6 +30,11 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
 
     final override fun getItemCount(): Int = dataList.size
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        recyclerView.setHasFixedSize(true)
+    }
+
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
         unbindFilterDrawer()
