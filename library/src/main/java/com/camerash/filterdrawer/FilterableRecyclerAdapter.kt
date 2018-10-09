@@ -41,9 +41,8 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
     private fun filterWithFilterMap(filterMap: Map<Parent, Set<Child>>) {
         val newDataList = if(filterMap.isEmpty()) refDataList else refDataList.filter { filterData(it, filterMap) }
         val diff = DiffUtil.calculateDiff(FilterRecyclerViewDiffCallback(dataList, newDataList))
-        diff.dispatchUpdatesTo(this)
-
         dataList = newDataList
+        diff.dispatchUpdatesTo(this)
     }
 
     private fun filterData(data: Data, filterMap: Map<Parent, Set<Child>>): Boolean {
