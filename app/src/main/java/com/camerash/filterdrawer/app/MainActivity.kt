@@ -3,7 +3,6 @@ package com.camerash.filterdrawer.app
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.camerash.filterdrawer.DrawerBuilder
 import com.camerash.filterdrawer.FilterDrawer
 import com.camerash.filterdrawer.R
@@ -79,7 +78,5 @@ class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListe
 
     override fun onChildDeselect(parent: PetFilterCategory, child: Set<PetFilter>) {}
 
-    override fun onReset() {
-        Log.d("reset", "true")
-    }
+    override fun onReset() {}
 }

@@ -73,7 +73,11 @@ class ParentAdapter<Parent, Child>(private var parentItemList: List<Parent>, var
 
     fun reset() {
         childAdapterList.forEach { it.reset() }
-        notifyItemRangeChanged(0, childAdapterList.size, true)
+        notifyItemRangeChanged(0, childAdapterList.size, RESET_FLAG)
         childSelectListenerList.forEach { it.onReset() }
+    }
+
+    companion object {
+        const val RESET_FLAG = -1
     }
 }
