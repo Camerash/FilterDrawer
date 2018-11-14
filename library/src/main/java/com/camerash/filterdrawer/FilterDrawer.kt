@@ -1,6 +1,8 @@
 package com.camerash.filterdrawer
 
+import android.support.annotation.ColorRes
 import android.support.annotation.MenuRes
+import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -30,6 +32,7 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
 
     private fun constructFilter() {
         applyToolbarOptions()
+        applyButtonsOptions()
         setupListeners()
         setupRecyclerView()
     }
@@ -38,6 +41,13 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
         showToolbar(builder.displayToolbar)
         setToolbarTitle(builder.toolbarTitle)
         inflateToolbarMenu(builder.toolbarMenuResId)
+    }
+
+    private fun applyButtonsOptions() {
+        resetBtn.text = builder.resetText
+        resetBtn.setTextColor(builder.resetColor)
+        applyBtn.text = builder.applyText
+        applyBtn.setTextColor(builder.applyColor)
     }
 
     private fun setupListeners() {
@@ -89,6 +99,28 @@ class FilterDrawer<Parent, Child>(private val builder: DrawerBuilder<Parent, Chi
 
     fun removeChildSelectListener(childSelectListener: OnChildSelectListener<Parent, Child>) {
         adapter.childSelectListenerList.remove(childSelectListener)
+    }
+
+    fun setResetText(text: String) {
+        builder.resetText = text
+        resetBtn.text = builder.resetText
+    }
+
+    fun setResetColor(@ColorRes color: Int) {
+        val act = builder.activity ?: return
+        builder.resetColor = ContextCompat.getColor(act, color)
+        resetBtn.setTextColor(builder.resetColor)
+    }
+
+    fun setApplyText(text: String) {
+        builder.applyText = text
+        applyBtn.text = builder.applyText
+    }
+
+    fun setApplyColor(@ColorRes color: Int) {
+        val act = builder.activity ?: return
+        builder.applyColor = ContextCompat.getColor(act, color)
+        applyBtn.setTextColor(builder.applyColor)
     }
 
     fun openFilterDrawer() {

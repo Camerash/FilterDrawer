@@ -1,10 +1,13 @@
 package com.camerash.filterdrawer
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Build
+import android.support.annotation.ColorRes
 import android.support.annotation.LayoutRes
 import android.support.annotation.MenuRes
 import android.support.annotation.NonNull
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.View
@@ -19,6 +22,11 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
     internal var displayToolbar = true
     internal var toolbarTitle = "Filters"
     internal var toolbarMenuResId = 0
+
+    internal var resetText = "RESET"
+    internal var applyText = "APPLY"
+    internal var resetColor = Color.parseColor("#ffcc0000")
+    internal var applyColor = Color.parseColor("#2196F3")
 
     private var rootView: ViewGroup? = null
     private var translucentStatusBar = true
@@ -38,13 +46,13 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
 
 
     constructor(@NonNull act: Activity) : this() {
-        this.activity = act
-        this.rootView = act.findViewById(android.R.id.content)
+        with(act)
     }
 
     fun with(@NonNull act: Activity): DrawerBuilder<Parent, Child> {
         this.activity = act
         this.rootView = act.findViewById(android.R.id.content)
+
         return this
     }
 
@@ -115,14 +123,35 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         return this
     }
 
+    fun setResetText(text: String): DrawerBuilder<Parent, Child> {
+        this.resetText = text
+        return this
+    }
+
+    fun setResetColor(@ColorRes color: Int): DrawerBuilder<Parent, Child> {
+        val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
+        this.resetColor = ContextCompat.getColor(act, color)
+        return this
+    }
+
+    fun setApplyText(text: String): DrawerBuilder<Parent, Child> {
+        this.applyText = text
+        return this
+    }
+
+    fun setApplyColor(@ColorRes color: Int): DrawerBuilder<Parent, Child> {
+        val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
+        this.applyColor = ContextCompat.getColor(act, color)
+        return this
+    }
+
     fun withItems(items: Collection<Parent>): DrawerBuilder<Parent, Child> {
         this.itemList = ArrayList(items)
         return this
     }
 
     fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder<Parent, Child> {
-        val act = this.activity
-                ?: throw RuntimeException("Please pass an activity reference to the builder first")
+        val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
         this.drawerLayout = when (resLayout) {
             -1 -> {
@@ -138,8 +167,7 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
     }
 
     fun build(): FilterDrawer<Parent, Child> {
-        this.activity
-                ?: throw RuntimeException("Please pass an activity reference to the builder first")
+        this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
         if (this.drawerLayout == null) withDrawerLayout(-1)
 
