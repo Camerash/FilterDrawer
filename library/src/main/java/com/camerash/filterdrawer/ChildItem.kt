@@ -6,25 +6,77 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 
+/**
+ * Abstract class for base implementation of ChildItem used in FilterDrawer
+ *
+ * @author Camerash
+ * @see FilterDrawer
+ */
 abstract class ChildItem {
 
+    /**
+     * Retrieving title for the ChildItem
+     *
+     * @return title of ChildItem
+     */
     abstract fun getTitle(): String
 
+    /**
+     * Retrieving the layout resources id for the ChildItem
+     *
+     * @return id of layout resources used by ChildItem
+     */
     abstract fun getLayoutRes(): Int
 
+    /**
+     * Retrieving the id of the root view
+     *
+     * @return id of the root view
+     */
     abstract fun getRootViewId(): Int
 
+    /**
+     * Getting the view holder used by the ChildItem
+     *
+     * @return the view holder
+     */
     abstract fun getViewHolder(v: View): ViewHolder
 
+    /**
+     * Getting the resource id of the color used in title text when the ChildItem is not selected
+     *
+     * @return the resource id of the color
+     */
     abstract fun getDefaultColorRes(): Int
 
+    /**
+     * Getting the resource id of the color used in title text when the ChildItem is selected
+     *
+     * @return the resource id of the color
+     */
     abstract fun getSelectedColorRes(): Int
 
+    /**
+     * Getting the resource id of the color used when the ChildItem is not selected
+     *
+     * @return the resource id of the color
+     */
     abstract fun getDefaultBackgroundColorRes(): Int
 
+    /**
+     * Getting the resource id of the color used when the ChildItem is selected
+     *
+     * @return the resource id of the color
+     */
     abstract fun getSelectedBackgroundColorRes(): Int
 
-    abstract inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    /**
+     * Base implementation of the ViewHolder of ChildItem used in the FilterDrawer's ParentItems' child RecyclerView
+     *
+     * @param v view used in constructing ViewHolder
+     * @see ChildAdapter
+     */
+    abstract inner class ViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
 
         val rootView: ViewGroup = itemView.findViewById(getRootViewId())
 
@@ -33,11 +85,42 @@ abstract class ChildItem {
             rootView.setOnClickListener(onClickListener)
         }
 
+        /**
+         * Called when ViewHolder binds with ChildItem
+         *
+         * @param child the ChildItem to bind with ViewHolder
+         */
         abstract fun bindView(child: ChildItem)
-        abstract fun onSelect(child: ChildItem, @ColorRes colorRes: Int)
+
+        /**
+         * Called when the ChildItem got selected
+         *
+         * @param child the ChildItem that bound with this ViewHolder
+         */
+        abstract fun onSelect(child: ChildItem)
+
+
+        /**
+         * Called when the ChildItem got deselected
+         *
+         * @param child the ChildItem that bound with this ViewHolder
+         */
         abstract fun onDeselect(child: ChildItem)
+
+
+        /**
+         * Called when the FilterDrawer resets
+         *
+         * @param child the ChildItem that bound with this ViewHolder
+         */
         abstract fun onReset(child: ChildItem)
 
+        /**
+         * Helper method for getting color from color resources id
+         *
+         * @param color the color resources id
+         * @return the color
+         */
         fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)
     }
 }

@@ -48,7 +48,7 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
             when (payloads.first()) {
                 is Boolean -> {
                     if (payloads.first() as Boolean) {
-                        vh.onSelect(childItem, R.color.colorPrimary)
+                        vh.onSelect(childItem)
                     } else {
                         vh.onDeselect(childItem)
                     }

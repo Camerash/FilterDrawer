@@ -29,7 +29,7 @@ abstract class DefaultChildItem: ChildItem() {
             rootView.setBackgroundColor(getColor(getDefaultBackgroundColorRes()))
         }
 
-        override fun onSelect(child: ChildItem, colorRes: Int) {
+        override fun onSelect(child: ChildItem) {
             childText.setTextColor(getColor(getSelectedColorRes()))
             rootView.setBackgroundColor(getColor(getSelectedBackgroundColorRes()))
         }
