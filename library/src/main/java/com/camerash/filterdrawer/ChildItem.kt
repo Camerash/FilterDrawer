@@ -4,7 +4,6 @@ import android.support.annotation.ColorRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.view.ViewGroup
 
 /**
  * Abstract class for base implementation of ChildItem used in FilterDrawer
@@ -27,13 +26,6 @@ abstract class ChildItem {
      * @return id of layout resources used by ChildItem
      */
     abstract fun getLayoutRes(): Int
-
-    /**
-     * Retrieving the id of the root view
-     *
-     * @return id of the root view
-     */
-    abstract fun getRootViewId(): Int
 
     /**
      * Getting the view holder used by the ChildItem
@@ -76,13 +68,11 @@ abstract class ChildItem {
      * @param v view used in constructing ViewHolder
      * @see ChildAdapter
      */
-    abstract inner class ViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
-
-        val rootView: ViewGroup = itemView.findViewById(getRootViewId())
+    abstract inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
 
         internal fun bindView(child: ChildItem, onClickListener: (View) -> Unit) {
             bindView(child)
-            rootView.setOnClickListener(onClickListener)
+            v.setOnClickListener(onClickListener)
         }
 
         /**
