@@ -70,6 +70,12 @@ abstract class ChildItem {
      */
     abstract inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
 
+        /**
+         * Called when ViewHolder binds with ChildItem
+         *
+         * @param child the ChildItem to bind with ViewHolder
+         * @param onClickListener the onClickListener to be set on root view
+         */
         internal fun bindView(child: ChildItem, onClickListener: (View) -> Unit) {
             bindView(child)
             v.setOnClickListener(onClickListener)
