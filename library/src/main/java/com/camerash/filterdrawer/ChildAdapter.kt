@@ -4,19 +4,40 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
+/**
+ * Adapter for ChildItem used in the FilterDrawer
+ *
+ * @author Camerash
+ * @see ChildItem
+ */
 class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Child>, private val callback: (Set<Child>, Boolean) -> Unit)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
 
+    /**
+     * A map for recoding selected items
+     */
     private var selectedItemMap = mutableMapOf<Int, Child>()
 
+    /**
+     * Inflate view and create view holder
+     */
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        childItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_child, viewGroup, false))
+            childItemList.first().getViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.default_filter_child, viewGroup, false))
 
+    /**
+     * @return Number of child filters
+     */
     override fun getItemCount(): Int = childItemList.size
 
-    // Leave empty as we will be using the method that receives payloads
+    /**
+     * Called when view holder request binding
+     * Leave empty as we will be using the method that receives payloads
+     */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {}
 
+    /**
+     * Called when view holder request binding
+     */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>) {
         val childItem = childItemList[position]
         val vh = holder as ChildItem.ViewHolder
@@ -40,6 +61,10 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
         }
     }
 
+    /**
+     * Called on child clicked
+     * Perform logic on selected child filter
+     */
     private fun onChildClicked(adapterPosition: Int, childItem: Child) {
         if (selectedItemMap.isEmpty()) {
             // Item selected
@@ -55,7 +80,7 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
                 callback(getSelectedChildSet(), false)
             } else {
                 // Select only one, and item map must contain one
-                if(!parent.allowSelectMultiple()) {
+                if (!parent.allowSelectMultiple()) {
                     // New item selected
                     // Deselect old item first
                     val lastSelectedIndex = selectedItemMap.iterator().next().key
@@ -71,6 +96,9 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
         }
     }
 
+    /**
+     * Reset child filters
+     */
     fun reset() {
         selectedItemMap.forEach {
             notifyItemChanged(it.key, RESET_FLAG)
@@ -78,6 +106,9 @@ class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Ch
         selectedItemMap.clear()
     }
 
+    /**
+     * @return Set of selected child filters
+     */
     fun getSelectedChildSet(): Set<Child> {
         val childSet = mutableSetOf<Child>()
         selectedItemMap.forEach { childSet.add(it.value) }
