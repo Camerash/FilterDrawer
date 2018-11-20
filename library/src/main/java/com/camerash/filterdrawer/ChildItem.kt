@@ -21,9 +21,9 @@ abstract class ChildItem {
     abstract fun getTitle(): String
 
     /**
-     * Retrieving the layout resources id for the ChildItem
+     * Retrieving the layout resource id for the ChildItem
      *
-     * @return id of layout resources used by ChildItem
+     * @return id of layout resource used by ChildItem
      */
     abstract fun getLayoutRes(): Int
 
@@ -112,9 +112,9 @@ abstract class ChildItem {
         abstract fun onReset(child: ChildItem)
 
         /**
-         * Helper method for getting color from color resources id
+         * Helper method for getting color from color resource id
          *
-         * @param color the color resources id
+         * @param color the color resource id
          * @return the color
          */
         fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)
