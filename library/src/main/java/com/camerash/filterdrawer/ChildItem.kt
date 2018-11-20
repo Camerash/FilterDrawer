@@ -14,49 +14,49 @@ import android.view.View
 abstract class ChildItem {
 
     /**
-     * Retrieving title for the ChildItem
+     * Supply title for the ChildItem
      *
      * @return title of ChildItem
      */
     abstract fun getTitle(): String
 
     /**
-     * Retrieving the layout resource id for the ChildItem
+     * Supply the layout resource id for the ChildItem
      *
      * @return id of layout resource used by ChildItem
      */
     abstract fun getLayoutRes(): Int
 
     /**
-     * Getting the view holder used by the ChildItem
+     * Supply the view holder used by the ChildItem
      *
      * @return the view holder
      */
     abstract fun getViewHolder(v: View): ViewHolder
 
     /**
-     * Getting the resource id of the color used in title text when the ChildItem is not selected
+     * Supply the resource id of the color used in title text when the ChildItem is not selected
      *
      * @return the resource id of the color
      */
     abstract fun getDefaultColorRes(): Int
 
     /**
-     * Getting the resource id of the color used in title text when the ChildItem is selected
+     * Supply the resource id of the color used in title text when the ChildItem is selected
      *
      * @return the resource id of the color
      */
     abstract fun getSelectedColorRes(): Int
 
     /**
-     * Getting the resource id of the color used when the ChildItem is not selected
+     * Supply the resource id of the color used when the ChildItem is not selected
      *
      * @return the resource id of the color
      */
     abstract fun getDefaultBackgroundColorRes(): Int
 
     /**
-     * Getting the resource id of the color used when the ChildItem is selected
+     * Supply the resource id of the color used when the ChildItem is selected
      *
      * @return the resource id of the color
      */
@@ -112,7 +112,7 @@ abstract class ChildItem {
         abstract fun onReset(child: ChildItem)
 
         /**
-         * Helper method for getting color from color resource id
+         * Helper method for Supply color from color resource id
          *
          * @param color the color resource id
          * @return the color
