@@ -9,12 +9,33 @@ import android.view.View
 import android.widget.LinearLayout
 import net.cachapa.expandablelayout.ExpandableLayout
 
+/**
+ * Abstract class for base implementation of ParentItem used in FilterDrawer
+ *
+ * @author Camerash
+ * @see FilterDrawer
+ */
 abstract class ParentItem {
 
+    /**
+     * Supply the drawable icon resource id for the ParentItem
+     *
+     * @return resource id for icon drawable
+     */
     abstract fun getParentIcon(): Int
 
+    /**
+     * Supply title for the ParentItem
+     *
+     * @return title of ChildItem
+     */
     abstract fun getParentTitle(): String
 
+    /**
+     * Supply the layout resource id for the ParentItem
+     *
+     * @return id of layout resource used by ParentItem
+     */
     abstract fun getLayoutRes(): Int
 
     abstract fun getRootLinearLayoutId(): Int

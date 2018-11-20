@@ -10,7 +10,7 @@ import android.widget.TextView
 
 abstract class DefaultParentItem : ParentItem() {
 
-    // Default implementation
+
     override fun getLayoutRes(): Int = R.layout.default_filter_parent
 
     override fun getRootLinearLayoutId(): Int = R.id.root_layout
