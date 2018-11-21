@@ -8,6 +8,8 @@ import android.view.ViewGroup
  * Adapter for ParentItem used in the FilterDrawer
  *
  * @author Camerash
+ * @param Parent type of your custom type that extends ParentItem
+ * @param Child type of your custom type that extends ChildItem
  * @param parentItemList list of ParentItem
  * @param childSelectListenerList list of OnChildSelectListener to be called when changes happens
  * @see ParentItem
