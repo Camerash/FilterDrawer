@@ -58,6 +58,7 @@ abstract class DefaultChildItem: ChildItem() {
      * Default implementation of ViewHolder of ChildItem
      *
      * @param v view used in constructing ViewHolder
+     * @see ChildAdapter
      * @see ChildItem.ViewHolder
      */
     inner class ViewHolder(private val v: View): ChildItem.ViewHolder(v) {

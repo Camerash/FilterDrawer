@@ -8,25 +8,83 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
+/**
+ * Default implementation of ChildItem
+ *
+ * @author Camerash
+ * @see ChildItem
+ * @see ChildAdapter
+ */
 abstract class DefaultParentItem : ParentItem() {
 
-
+    /**
+     * Supply default layout resource id
+     *
+     * @return the default layout resource id
+     */
     override fun getLayoutRes(): Int = R.layout.default_filter_parent
 
+    /**
+     * Supply default root LinearLayout resource id
+     *
+     * @return the default root LinearLayout resource id
+     */
     override fun getRootLinearLayoutId(): Int = R.id.root_layout
 
+    /**
+     * Supply the resource id of the view who is responsible for receiving
+     * the onClick event for toggling expansion of ParentItem.
+     *
+     * @return id of the view
+     */
     override fun getToggleExpandOnClickViewId(): Int = R.id.parent
 
+    /**
+     * Supply the default implementation of ViewHolder used by the ParentItem
+     *
+     * @return the view holder
+     */
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
 
+    /**
+     * Supply the resource id of the color used in title text
+     * when none of the ChildItems under this ParentItem are selected
+     *
+     * @return the resource id of the color
+     */
     override fun getDefaultTextColorRes(): Int = R.color.black
 
+    /**
+     * Supply the resource id of the color used in title text
+     * when one or more ChildItems under this ParentItem are selected
+     *
+     * @return the resource id of the color
+     */
     override fun getSelectedTextColorRes(): Int = R.color.dark_blue
 
+    /**
+     * Supply the resource id of the color of icon used
+     * when none of the ChildItems under this ParentItem are selected
+     *
+     * @return the resource id of the color
+     */
     override fun getDefaultIconColorRes(): Int = getDefaultTextColorRes()
 
+    /**
+     * Supply the resource id of the color of icon used
+     * when one or more ChildItems under this ParentItem are selected
+     *
+     * @return the resource id of the color
+     */
     override fun getSelectedIconColorRes(): Int = getSelectedTextColorRes()
 
+    /**
+     * Default implementation of the ViewHolder of ParentItem used in the FilterDrawer's RecyclerView
+     *
+     * @param v view used in constructing ViewHolder
+     * @see ParentAdapter
+     * @see ParentItem.ViewHolder
+     */
     inner class ViewHolder(v: View) : ParentItem.ViewHolder(v) {
 
         private val headerIcon: AppCompatImageView = itemView.findViewById(R.id.parent_icon)
