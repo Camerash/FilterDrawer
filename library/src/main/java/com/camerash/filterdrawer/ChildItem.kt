@@ -39,14 +39,14 @@ abstract class ChildItem {
      *
      * @return the resource id of the color
      */
-    abstract fun getDefaultColorRes(): Int
+    abstract fun getDefaultTextColorRes(): Int
 
     /**
      * Supply the resource id of the color used in title text when the ChildItem is selected
      *
      * @return the resource id of the color
      */
-    abstract fun getSelectedColorRes(): Int
+    abstract fun getSelectedTextColorRes(): Int
 
     /**
      * Supply the resource id of the color used in background when the ChildItem is not selected

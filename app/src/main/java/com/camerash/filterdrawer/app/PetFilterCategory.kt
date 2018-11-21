@@ -15,7 +15,7 @@ class PetFilterCategory(val type: FilterType, @DrawableRes val icon: Int, privat
 
     override fun getChildCollection(): List<ChildItem> = this.childList
 
-    override fun getSelectedColorRes(): Int = R.color.colorPrimary
+    override fun getSelectedTextColorRes(): Int = R.color.colorPrimary
 
     override fun allowSelectMultiple(): Boolean = true
 }

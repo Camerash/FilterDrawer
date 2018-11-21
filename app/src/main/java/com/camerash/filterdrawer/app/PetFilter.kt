@@ -10,5 +10,5 @@ class PetFilter(val filter: Enum<*>) : DefaultChildItem() {
 
     override fun getTitle(): String = this.filter.name
 
-    override fun getSelectedColorRes(): Int = R.color.colorPrimary
+    override fun getSelectedTextColorRes(): Int = R.color.colorPrimary
 }

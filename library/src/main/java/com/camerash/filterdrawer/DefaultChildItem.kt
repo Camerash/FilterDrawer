@@ -31,14 +31,14 @@ abstract class DefaultChildItem: ChildItem() {
      *
      * @return the color resource id
      */
-    override fun getDefaultColorRes(): Int = R.color.black
+    override fun getDefaultTextColorRes(): Int = R.color.black
 
     /**
      * Supply the selected color resource id used by ChildItem text
      *
      * @return the color resource id
      */
-    override fun getSelectedColorRes(): Int = R.color.dark_blue
+    override fun getSelectedTextColorRes(): Int = R.color.dark_blue
 
     /**
      * Supply the default color resource id used by ChildItem background (Unselected)
@@ -66,17 +66,17 @@ abstract class DefaultChildItem: ChildItem() {
 
         override fun bindView(child: ChildItem) {
             childText.text = child.getTitle()
-            childText.setTextColor(getColor(getDefaultColorRes()))
+            childText.setTextColor(getColor(getDefaultTextColorRes()))
             v.setBackgroundColor(getColor(getDefaultBackgroundColorRes()))
         }
 
         override fun onSelect(child: ChildItem) {
-            childText.setTextColor(getColor(getSelectedColorRes()))
+            childText.setTextColor(getColor(getSelectedTextColorRes()))
             v.setBackgroundColor(getColor(getSelectedBackgroundColorRes()))
         }
 
         override fun onDeselect(child: ChildItem) {
-            childText.setTextColor(getColor(getDefaultColorRes()))
+            childText.setTextColor(getColor(getDefaultTextColorRes()))
             v.setBackgroundColor(getColor(getDefaultBackgroundColorRes()))
         }
 

@@ -19,13 +19,13 @@ abstract class DefaultParentItem : ParentItem() {
 
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
 
-    override fun getDefaultColorRes(): Int = R.color.black
+    override fun getDefaultTextColorRes(): Int = R.color.black
 
-    override fun getSelectedColorRes(): Int = R.color.dark_blue
+    override fun getSelectedTextColorRes(): Int = R.color.dark_blue
 
-    override fun getDefaultIconColorRes(): Int = getDefaultColorRes()
+    override fun getDefaultIconColorRes(): Int = getDefaultTextColorRes()
 
-    override fun getSelectedIconColorRes(): Int = getSelectedColorRes()
+    override fun getSelectedIconColorRes(): Int = getSelectedTextColorRes()
 
     inner class ViewHolder(v: View) : ParentItem.ViewHolder(v) {
 
@@ -48,12 +48,12 @@ abstract class DefaultParentItem : ParentItem() {
             expandableView.setOnExpansionUpdateListener(ExpandableLayoutIndicatorListener(indicatorIcon, 90))
 
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
-            headerText.setTextColor(getColor(getDefaultColorRes()))
+            headerText.setTextColor(getColor(getDefaultTextColorRes()))
         }
 
         override fun onChildSelect(parent: ParentItem, childSet: Set<ChildItem>) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getSelectedIconColorRes())))
-            headerText.setTextColor(getColor(getSelectedColorRes()))
+            headerText.setTextColor(getColor(getSelectedTextColorRes()))
             headerText.text = if(childSet.size == parent.getChildCollection().size) "All" else childSet.joinToString{ it.getTitle() }
             if (!allowSelectMultiple()) {
                 expandableView.collapse()
@@ -63,7 +63,7 @@ abstract class DefaultParentItem : ParentItem() {
         override fun onChildDeselect(parent: ParentItem, childSet: Set<ChildItem>) {
             if(childSet.isEmpty()) {
                 ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
-                headerText.setTextColor(getColor(getDefaultColorRes()))
+                headerText.setTextColor(getColor(getDefaultTextColorRes()))
                 headerText.text = parent.getParentTitle()
             } else {
                 headerText.text = childSet.joinToString{ it.getTitle() }
@@ -72,7 +72,7 @@ abstract class DefaultParentItem : ParentItem() {
 
         override fun onReset(parent: ParentItem) {
             ImageViewCompat.setImageTintList(headerIcon, ColorStateList.valueOf(getColor(getDefaultIconColorRes())))
-            headerText.setTextColor(getColor(getDefaultColorRes()))
+            headerText.setTextColor(getColor(getDefaultTextColorRes()))
             headerText.text = parent.getParentTitle()
             expandableView.collapse()
         }

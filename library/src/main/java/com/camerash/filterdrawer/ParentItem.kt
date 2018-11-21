@@ -75,7 +75,7 @@ abstract class ParentItem {
      *
      * @return the resource id of the color
      */
-    abstract fun getDefaultColorRes(): Int
+    abstract fun getDefaultTextColorRes(): Int
 
     /**
      * Supply the resource id of the color used in title text
@@ -83,7 +83,7 @@ abstract class ParentItem {
      *
      * @return the resource id of the color
      */
-    abstract fun getSelectedColorRes(): Int
+    abstract fun getSelectedTextColorRes(): Int
 
     /**
      * Supply the resource id of the color of icon used
