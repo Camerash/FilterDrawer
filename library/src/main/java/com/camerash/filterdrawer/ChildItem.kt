@@ -49,14 +49,14 @@ abstract class ChildItem {
     abstract fun getSelectedColorRes(): Int
 
     /**
-     * Supply the resource id of the color used when the ChildItem is not selected
+     * Supply the resource id of the color used in background when the ChildItem is not selected
      *
      * @return the resource id of the color
      */
     abstract fun getDefaultBackgroundColorRes(): Int
 
     /**
-     * Supply the resource id of the color used when the ChildItem is selected
+     * Supply the resource id of the color used in background when the ChildItem is selected
      *
      * @return the resource id of the color
      */

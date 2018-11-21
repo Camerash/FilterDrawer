@@ -8,6 +8,10 @@ import android.view.ViewGroup
  * Adapter for ChildItem used in the FilterDrawer
  *
  * @author Camerash
+ * @param parent ParentItem hosting this ChildAdapter
+ * @param childItemList list of ChildItem
+ * @param callback callback to ParentItem ViewHolder when selection changes. Boolean indicates whether
+ * @see ParentItem
  * @see ChildItem
  */
 class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Child>, private val callback: (Set<Child>, Boolean) -> Unit)
