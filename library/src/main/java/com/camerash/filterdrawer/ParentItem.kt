@@ -63,7 +63,7 @@ abstract class ParentItem {
     abstract fun getChildCollection(): List<ChildItem>
 
     /**
-     * Supply the view holder used by the ParentItem
+     * Supply the ViewHolder used by the ParentItem
      *
      * @return the view holder
      */
