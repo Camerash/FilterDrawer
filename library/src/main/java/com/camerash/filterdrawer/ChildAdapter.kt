@@ -11,8 +11,8 @@ import android.view.ViewGroup
  * @param parent ParentItem hosting this ChildAdapter
  * @param childItemList list of ChildItem
  * @param callback callback to ParentItem ViewHolder when selection changes. Boolean indicates whether
- * @see ParentItem
  * @see ChildItem
+ * @see ParentAdapter
  */
 class ChildAdapter<Parent, Child>(val parent: Parent, val childItemList: List<Child>, private val callback: (Set<Child>, Boolean) -> Unit)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() where Parent : ParentItem, Child : ChildItem {
