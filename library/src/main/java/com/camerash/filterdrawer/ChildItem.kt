@@ -21,7 +21,7 @@ abstract class ChildItem {
     abstract fun getTitle(): String
 
     /**
-     * Supply the layout resource id for the ChildItem
+     * Supply the layout resource id for the customization of ChildItem
      *
      * @return id of layout resource used by ChildItem
      */
