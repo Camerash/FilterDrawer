@@ -21,9 +21,9 @@ abstract class ChildItem {
     abstract fun getTitle(): String
 
     /**
-     * Supply the layout resource id for the customization of ChildItem
+     * Supply the layout resource for the customization of ChildItem
      *
-     * @return Id of layout resource used by ChildItem
+     * @return The layout resource used by ChildItem
      */
     abstract fun getLayoutRes(): Int
 
@@ -35,30 +35,30 @@ abstract class ChildItem {
     abstract fun getViewHolder(v: View): ViewHolder
 
     /**
-     * Supply the resource id of the color used in title text when the ChildItem is not selected
+     * Supply the color resource used in title text when the ChildItem is not selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     abstract fun getDefaultTextColorRes(): Int
 
     /**
-     * Supply the resource id of the color used in title text when the ChildItem is selected
+     * Supply the color resource used in title text when the ChildItem is selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     abstract fun getSelectedTextColorRes(): Int
 
     /**
-     * Supply the resource id of the color used in background when the ChildItem is not selected
+     * Supply the color resource used in background when the ChildItem is not selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     abstract fun getDefaultBackgroundColorRes(): Int
 
     /**
-     * Supply the resource id of the color used in background when the ChildItem is selected
+     * Supply the color resource used in background when the ChildItem is selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     abstract fun getSelectedBackgroundColorRes(): Int
 
@@ -112,9 +112,9 @@ abstract class ChildItem {
         abstract fun onReset(child: ChildItem)
 
         /**
-         * Helper method for Supply color from color resource id
+         * Helper method for Supply color from color resource
          *
-         * @param color The color resource id
+         * @param color The color resource
          * @return The color
          */
         fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)

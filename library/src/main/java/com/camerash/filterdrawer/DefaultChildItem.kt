@@ -13,9 +13,9 @@ import android.widget.TextView
 abstract class DefaultChildItem: ChildItem() {
 
     /**
-     * Supply default layout resource id
+     * Supply default layout resource
      *
-     * @return The default layout resource id
+     * @return The default layout resource
      */
     override fun getLayoutRes(): Int = R.layout.default_filter_child
 
@@ -27,28 +27,28 @@ abstract class DefaultChildItem: ChildItem() {
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
 
     /**
-     * Supply the default color resource id used by ChildItem text (Unselected)
+     * Supply the default color resource used by ChildItem text (Unselected)
      *
-     * @return The color resource id
+     * @return The color resource
      */
     override fun getDefaultTextColorRes(): Int = R.color.black
 
     /**
-     * Supply the selected color resource id used by ChildItem text
+     * Supply the selected color resource used by ChildItem text
      *
-     * @return The color resource id
+     * @return The color resource
      */
     override fun getSelectedTextColorRes(): Int = R.color.dark_blue
 
     /**
-     * Supply the default color resource id used by ChildItem background (Unselected)
+     * Supply the default color resource used by ChildItem background (Unselected)
      *
      * @return The color resource id
      */
     override fun getDefaultBackgroundColorRes(): Int = R.color.transparent
 
     /**
-     * Supply the selected color resource id used by ChildItem background
+     * Supply the selected color resource used by ChildItem background
      *
      * @return The color resource id
      */

@@ -18,46 +18,46 @@ import net.cachapa.expandablelayout.ExpandableLayout
 abstract class ParentItem {
 
     /**
-     * Supply the drawable icon resource id for the ParentItem
+     * Supply the drawable icon resource for the ParentItem
      *
-     * @return resource id for icon drawable
+     * @return The icon drawable resource
      */
     abstract fun getParentIcon(): Int
 
     /**
      * Supply title for the ParentItem
      *
-     * @return title of ChildItem
+     * @return Title of ChildItem
      */
     abstract fun getParentTitle(): String
 
     /**
-     * Supply the layout resource id for the customization of ParentItem
+     * Supply the layout resource for the customization of ParentItem
      *
-     * @return id of layout resource used by ParentItem
+     * @return The layout resource used by ParentItem
      */
     abstract fun getLayoutRes(): Int
 
     /**
-     * Supply the root linear layout resource id for the customization of ParentItem
+     * Supply the root linear layout id for the customization of ParentItem
      *
-     * @return id of root linear layout
+     * @return Id of root linear layout
      */
     abstract fun getRootLinearLayoutId(): Int
 
     /**
-     * Supply the resource id of the view who is responsible for receiving
+     * Supply the view id who is responsible for receiving
      * the onClick event for toggling expansion of ParentItem.
      *
      * Used for the customization of ParentItem
-     * @return id of the view
+     * @return Id of the view
      */
     abstract fun getToggleExpandOnClickViewId(): Int
 
     /**
      * Supply the list of ChildItem under this ParentItem
      *
-     * @return list of ChileItem under this ParentItem
+     * @return List of ChileItem under this ParentItem
      * @see ChildItem
      */
     abstract fun getChildCollection(): List<ChildItem>
@@ -65,39 +65,39 @@ abstract class ParentItem {
     /**
      * Supply the ViewHolder used by the ParentItem
      *
-     * @return the view holder
+     * @return The view holder
      */
     abstract fun getViewHolder(v: View): ViewHolder
 
     /**
-     * Supply the resource id of the color used in title text
+     * Supply the color resource used in title text
      * when none of the ChildItems under this ParentItem are selected
      *
-     * @return the resource id of the color
+     * @return The color resource
      */
     abstract fun getDefaultTextColorRes(): Int
 
     /**
-     * Supply the resource id of the color used in title text
+     * Supply the color resource used in title text
      * when one or more ChildItems under this ParentItem are selected
      *
-     * @return the resource id of the color
+     * @return The color resource
      */
     abstract fun getSelectedTextColorRes(): Int
 
     /**
-     * Supply the resource id of the color of icon used
+     * Supply the color resource of icon used
      * when none of the ChildItems under this ParentItem are selected
      *
-     * @return the resource id of the color
+     * @return The color resource
      */
     abstract fun getDefaultIconColorRes(): Int
 
     /**
-     * Supply the resource id of the color of icon used
+     * Supply the color resource of icon used
      * when one or more ChildItems under this ParentItem are selected
      *
-     * @return the resource id of the color
+     * @return The color resource
      */
     abstract fun getSelectedIconColorRes(): Int
 
@@ -105,14 +105,14 @@ abstract class ParentItem {
      * Supply the option of whether the ChildItems of this ParentItem
      * can be multi-selected
      *
-     * @return whether multi-selected ChildItems are allowed
+     * @return Whether multi-selected ChildItems are allowed
      */
     abstract fun allowSelectMultiple(): Boolean
 
     /**
      * Base implementation of the ViewHolder of ParentItem used in the FilterDrawer's RecyclerView
      *
-     * @param v view used in constructing ViewHolder
+     * @param v View used in constructing ViewHolder
      * @see ParentAdapter
      */
     abstract inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -155,10 +155,10 @@ abstract class ParentItem {
         /**
          * Called when ViewHolder binds with ParentItem
          *
-         * @param parent the ParentItem to bind with ViewHolder
-         * @param parentViewPool the RecycledViewPool to be set for the ChildItem RecyclerView for better ViewHolder re-usability
-         * @param childAdapterList the list of ChildAdapter in this FilterDrawer
-         * @param callback callback to ParentAdapter when the related ChildAdapter's selection changes.
+         * @param parent The ParentItem to bind with ViewHolder
+         * @param parentViewPool The RecycledViewPool to be set for the ChildItem RecyclerView for better ViewHolder re-usability
+         * @param childAdapterList The list of ChildAdapter in this FilterDrawer
+         * @param callback Callback to ParentAdapter when the related ChildAdapter's selection changes.
          */
         @Suppress("UNCHECKED_CAST")
         internal fun <Parent, Child> bindView(parent: Parent, parentViewPool: RecyclerView.RecycledViewPool, childAdapterList: ArrayList<ChildAdapter<Parent, Child>>, callback: (Set<Child>, Boolean) -> Unit)
@@ -180,15 +180,15 @@ abstract class ParentItem {
         /**
          * Called when ViewHolder binds with ParentItem
          *
-         * @param parent the ParentItem to bind with ViewHolder
+         * @param parent The ParentItem to bind with ViewHolder
          */
         abstract fun bindView(parent: ParentItem)
 
         /**
          * Called when one of the ChildItem is selected
          *
-         * @param parent the ParentItem that bound with this ViewHolder
-         * @param childSet the currently selected set of ChildItem
+         * @param parent The ParentItem that bound with this ViewHolder
+         * @param childSet The currently selected set of ChildItem
          */
         abstract fun onChildSelect(parent: ParentItem, childSet: Set<ChildItem>)
 
@@ -196,8 +196,8 @@ abstract class ParentItem {
         /**
          * Called when one of the ChildItem is deselected
          *
-         * @param parent the ParentItem that bound with this ViewHolder
-         * @param childSet the currently selected set of ChildItem
+         * @param parent The ParentItem that bound with this ViewHolder
+         * @param childSet The currently selected set of ChildItem
          */
         abstract fun onChildDeselect(parent: ParentItem, childSet: Set<ChildItem>)
 
@@ -205,15 +205,15 @@ abstract class ParentItem {
         /**
          * Called when the FilterDrawer resets
          *
-         * @param parent the ParentItem that bound with this ViewHolder
+         * @param parent The ParentItem that bound with this ViewHolder
          */
         abstract fun onReset(parent: ParentItem)
 
         /**
-         * Helper method for Supply color from color resource id
+         * Helper method for Supply color from color resource
          *
-         * @param color the color resource id
-         * @return the color
+         * @param color The color resource
+         * @return The color
          */
         fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)
     }

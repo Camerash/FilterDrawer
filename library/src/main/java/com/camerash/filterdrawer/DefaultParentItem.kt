@@ -18,21 +18,21 @@ import android.widget.TextView
 abstract class DefaultParentItem : ParentItem() {
 
     /**
-     * Supply default layout resource id
+     * Supply default layout resource
      *
-     * @return The default layout resource id
+     * @return The default layout resource
      */
     override fun getLayoutRes(): Int = R.layout.default_filter_parent
 
     /**
-     * Supply default root LinearLayout resource id
+     * Supply default root LinearLayout id
      *
-     * @return The default root LinearLayout resource id
+     * @return The default root LinearLayout id
      */
     override fun getRootLinearLayoutId(): Int = R.id.root_layout
 
     /**
-     * Supply the resource id of the view who is responsible for receiving
+     * Supply the id of the view who is responsible for receiving
      * the onClick event for toggling expansion of ParentItem.
      *
      * @return Id of the view
@@ -47,34 +47,34 @@ abstract class DefaultParentItem : ParentItem() {
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
 
     /**
-     * Supply the resource id of the color used in title text
+     * Supply the color resource used in title text
      * when none of the ChildItems under this ParentItem are selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     override fun getDefaultTextColorRes(): Int = R.color.black
 
     /**
-     * Supply the resource id of the color used in title text
+     * Supply the color resource used in title text
      * when one or more ChildItems under this ParentItem are selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     override fun getSelectedTextColorRes(): Int = R.color.dark_blue
 
     /**
-     * Supply the resource id of the color of icon used
+     * Supply the color resource of icon used
      * when none of the ChildItems under this ParentItem are selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     override fun getDefaultIconColorRes(): Int = getDefaultTextColorRes()
 
     /**
-     * Supply the resource id of the color of icon used
+     * Supply the color resource of icon used
      * when one or more ChildItems under this ParentItem are selected
      *
-     * @return The resource id of the color
+     * @return The color resource
      */
     override fun getSelectedIconColorRes(): Int = getSelectedTextColorRes()
 
