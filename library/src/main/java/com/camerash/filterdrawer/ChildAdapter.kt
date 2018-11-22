@@ -8,11 +8,11 @@ import android.view.ViewGroup
  * Adapter for ChildItem used in the FilterDrawer
  *
  * @author Camerash
- * @param Parent type of your custom type that extends ParentItem
- * @param Child type of your custom type that extends ChildItem
+ * @param Parent Type of your custom type that extends ParentItem
+ * @param Child Type of your custom type that extends ChildItem
  * @param parent ParentItem hosting this ChildAdapter
- * @param childItemList list of ChildItem
- * @param callback callback to ParentItem ViewHolder when selection changes. Boolean indicates whether
+ * @param childItemList List of ChildItem
+ * @param callback Callback to ParentItem ViewHolder when selection changes. Boolean indicates whether
  * @see ChildItem
  * @see ParentAdapter
  */

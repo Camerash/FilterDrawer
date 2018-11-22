@@ -5,6 +5,8 @@ import net.cachapa.expandablelayout.ExpandableLayout
 
 /**
  * Used in conjunction with ExpansionLayout for rotation animation of the arrow indicator
+ *
+ * @author Camerash
  * @param iv ImageView for the animation to apply on
  * @param maxDegree Maximum rotation degree for the ImageView animation to turn in the ClockWise direction
  */

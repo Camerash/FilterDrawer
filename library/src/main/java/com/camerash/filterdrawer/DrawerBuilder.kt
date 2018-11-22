@@ -14,7 +14,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.mikepenz.materialize.MaterializeBuilder
 
-
+/**
+ * Builder for building the FilterDrawer
+ *
+ * @author Camerash
+ * @param Parent Type of your custom type that extends ParentItem
+ * @param Child Type of your custom type that extends ChildItem
+ * @see FilterDrawer
+ */
 class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem {
 
     internal var activity: Activity? = null
@@ -44,11 +51,22 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
     private var drawerLayout: DrawerLayout? = null
     private var filterView: View? = null
 
-
+    /**
+     * Give builder a reference to the activity
+     *
+     * @param act Reference to the activity
+     * @return this
+     */
     constructor(@NonNull act: Activity) : this() {
         with(act)
     }
 
+    /**
+     * Give builder a reference to the activity
+     *
+     * @param act Reference to the activity
+     * @return this
+     */
     fun with(@NonNull act: Activity): DrawerBuilder<Parent, Child> {
         this.activity = act
         this.rootView = act.findViewById(android.R.id.content)
@@ -56,42 +74,92 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         return this
     }
 
+    /**
+     * If enabled, status bar will be translucent
+     *
+     * Default to true
+     * @param enable Whether to make status bar to be translucent
+     * @return this
+     */
     fun setTranslucentStatusBar(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.translucentStatusBar = enable
         return this
     }
 
+    /**
+     * If enabled, FilterDrawer will be drawn behind status bar
+     *
+     * Default to false
+     * @param enable Whether to draw FilterDrawer behind status bar
+     * @return this
+     */
     fun setDisplayBelowStatusBar(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.displayBelowStatusBar = enable
         return this
     }
 
+    /**
+     * If enabled, activity will be set to fullscreen
+     *
+     * Default to false
+     * @param enable Whether to make activity fullscreen
+     * @return this
+     */
     fun setFullscreen(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.fullscreen = enable
         return this
     }
 
+    /**
+     * If enabled, system UI will be hidden
+     *
+     * Default to false
+     * @param enable Whether to make system UI hidden
+     * @return this
+     */
     fun setSystemUIHidden(enable: Boolean): DrawerBuilder<Parent, Child> {
         this.systemUIHidden = enable
         return this
     }
 
+    /**
+     * If enabled, toolbar in FilterDrawer will be displayed
+     *
+     * Default to true
+     * @param enable Whether to display toolbar
+     * @return this
+     */
     fun displayToolbar(display: Boolean): DrawerBuilder<Parent, Child> {
         this.displayToolbar = display
         return this
     }
 
+    /**
+     * Set the title in the toolbar
+     *
+     * Default to "Filters"
+     * @param title The title for toolbar
+     * @return this
+     */
     fun setToolbarTitle(title: String): DrawerBuilder<Parent, Child> {
         this.displayToolbar(true)
         this.toolbarTitle = title
         return this
     }
 
+    /**
+     * Set the menu in toolbar
+     *
+     * Default to 0 (i.e.: no menu)
+     * @param menuId The resource id of the menu
+     * @return this
+     */
     fun setToolbarMenu(@MenuRes menuId: Int): DrawerBuilder<Parent, Child> {
         this.displayToolbar(true)
         this.toolbarMenuResId = menuId
         return this
     }
+
 
     fun setGravity(gravity: Int): DrawerBuilder<Parent, Child> {
         this.gravity = gravity

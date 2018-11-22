@@ -16,56 +16,56 @@ abstract class ChildItem {
     /**
      * Supply title for the ChildItem
      *
-     * @return title of ChildItem
+     * @return Title of ChildItem
      */
     abstract fun getTitle(): String
 
     /**
      * Supply the layout resource id for the customization of ChildItem
      *
-     * @return id of layout resource used by ChildItem
+     * @return Id of layout resource used by ChildItem
      */
     abstract fun getLayoutRes(): Int
 
     /**
      * Supply the view holder used by the ChildItem
      *
-     * @return the view holder
+     * @return The view holder
      */
     abstract fun getViewHolder(v: View): ViewHolder
 
     /**
      * Supply the resource id of the color used in title text when the ChildItem is not selected
      *
-     * @return the resource id of the color
+     * @return The resource id of the color
      */
     abstract fun getDefaultTextColorRes(): Int
 
     /**
      * Supply the resource id of the color used in title text when the ChildItem is selected
      *
-     * @return the resource id of the color
+     * @return The resource id of the color
      */
     abstract fun getSelectedTextColorRes(): Int
 
     /**
      * Supply the resource id of the color used in background when the ChildItem is not selected
      *
-     * @return the resource id of the color
+     * @return The resource id of the color
      */
     abstract fun getDefaultBackgroundColorRes(): Int
 
     /**
      * Supply the resource id of the color used in background when the ChildItem is selected
      *
-     * @return the resource id of the color
+     * @return The resource id of the color
      */
     abstract fun getSelectedBackgroundColorRes(): Int
 
     /**
      * Base implementation of the ViewHolder of ChildItem used in the FilterDrawer's ParentItems' child RecyclerView
      *
-     * @param v view used in constructing ViewHolder
+     * @param v View used in constructing ViewHolder
      * @see ChildAdapter
      */
     abstract inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
@@ -73,8 +73,8 @@ abstract class ChildItem {
         /**
          * Called when ViewHolder binds with ChildItem
          *
-         * @param child the ChildItem to bind with ViewHolder
-         * @param onClickListener the onClickListener to be set on root view
+         * @param child The ChildItem to bind with ViewHolder
+         * @param onClickListener The onClickListener to be set on root view
          */
         internal fun bindView(child: ChildItem, onClickListener: (View) -> Unit) {
             bindView(child)
@@ -84,14 +84,14 @@ abstract class ChildItem {
         /**
          * Called when ViewHolder binds with ChildItem
          *
-         * @param child the ChildItem to bind with ViewHolder
+         * @param child The ChildItem to bind with ViewHolder
          */
         abstract fun bindView(child: ChildItem)
 
         /**
          * Called when the ChildItem got selected
          *
-         * @param child the ChildItem that bound with this ViewHolder
+         * @param child The ChildItem that bound with this ViewHolder
          */
         abstract fun onSelect(child: ChildItem)
 
@@ -99,7 +99,7 @@ abstract class ChildItem {
         /**
          * Called when the ChildItem got deselected
          *
-         * @param child the ChildItem that bound with this ViewHolder
+         * @param child The ChildItem that bound with this ViewHolder
          */
         abstract fun onDeselect(child: ChildItem)
 
@@ -107,15 +107,15 @@ abstract class ChildItem {
         /**
          * Called when the FilterDrawer resets
          *
-         * @param child the ChildItem that bound with this ViewHolder
+         * @param child The ChildItem that bound with this ViewHolder
          */
         abstract fun onReset(child: ChildItem)
 
         /**
          * Helper method for Supply color from color resource id
          *
-         * @param color the color resource id
-         * @return the color
+         * @param color The color resource id
+         * @return The color
          */
         fun getColor(@ColorRes color: Int) = ContextCompat.getColor(itemView.context, color)
     }
