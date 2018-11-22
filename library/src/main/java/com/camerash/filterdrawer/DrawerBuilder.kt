@@ -18,8 +18,8 @@ import com.mikepenz.materialize.MaterializeBuilder
  * Builder for building the FilterDrawer
  *
  * @author Camerash
- * @param Parent Type of your custom type that extends ParentItem
- * @param Child Type of your custom type that extends ChildItem
+ * @param Parent Type that extends ParentItem
+ * @param Child Type that extends ChildItem
  * @see FilterDrawer
  */
 class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem {
