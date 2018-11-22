@@ -365,8 +365,7 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         val drawerLayout = this.drawerLayout ?: return
         customDrawerMap.forEach { (gravity, view) ->
             drawerLayout.addView(view, 1)
-
-            DrawerUtils.setLayoutGravity(view, gravity)
+            setLayoutGravity(view, gravity)
         }
     }
 
@@ -379,9 +378,18 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         drawerLayout?.addView(filterView)
 
         filterView?.let {
-            DrawerUtils.setLayoutGravity(it, this.gravity)
+            setLayoutGravity(it, this.gravity)
             drawerLayout?.setDrawerLockMode(drawerLockMode, it)
             it.fitsSystemWindows = displayBelowStatusBar
         }
+    }
+
+    /**
+     * Internal method for setting layout gravity of drawers
+     */
+    private fun setLayoutGravity(view: View, gravity: Int) {
+        val params = view.layoutParams as DrawerLayout.LayoutParams
+        params.gravity = gravity
+        view.layoutParams = params
     }
 }
