@@ -160,64 +160,145 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         return this
     }
 
-
+    /**
+     * Set the gravity of the FilterDrawer
+     *
+     * Default to Gravity.END
+     * @param gravity The gravity enum
+     * @return this
+     * @see GravityCompat
+     */
     fun setGravity(gravity: Int): DrawerBuilder<Parent, Child> {
         this.gravity = gravity
         return this
     }
 
+    /**
+     * Add a OnChildSelectListener to the FilterDrawer
+     *
+     * @param childSelectListener The OnChildSelectListener to be added
+     * @return this
+     * @see FilterDrawer.OnChildSelectListener
+     */
     fun addChildSelectListener(childSelectListener: FilterDrawer.OnChildSelectListener<Parent, Child>): DrawerBuilder<Parent, Child> {
         this.childSelectListenerList.add(childSelectListener)
         return this
     }
 
+    /**
+     * Set the DrawerListener to the FilterDrawer
+     *
+     * @param drawerListener The DrawerListener to be set
+     * @return this
+     * @see DrawerLayout.DrawerListener
+     */
     fun setDrawerListener(drawerListener: DrawerLayout.DrawerListener): DrawerBuilder<Parent, Child> {
         this.drawerListener = drawerListener
         return this
     }
 
+    /**
+     * Set the OnFilterControlClickListener to the FilterDrawer.
+     *
+     * Responsible for events of buttons in the bottom of the FilterDrawer (i.e.: RESET / APPLY)
+     * @param filterControlClickListener The OnFilterControlClickListener to be set
+     * @return this
+     * @see FilterDrawer.OnFilterControlClickListener
+     */
     fun setFilterControlClickListener(filterControlClickListener: FilterDrawer.OnFilterControlClickListener): DrawerBuilder<Parent, Child> {
         this.filterControlClickListener = filterControlClickListener
         return this
     }
 
+    /**
+     * Set the lock mode of FilterDrawer
+     *
+     * Default to DrawerLayout.LOCK_MODE_UNLOCKED
+     * @param lockMode The lock mode of FilterDrawer
+     * @return this
+     * @see DrawerLayout
+     */
     fun setDrawerLockMode(lockMode: Int): DrawerBuilder<Parent, Child> {
         this.drawerLockMode = lockMode
         return this
     }
 
+    /**
+     * Add a custom drawer to the layout
+     *
+     * Note that drawers with the same gravity as the FilterDrawer will be removed
+     * @param view The view for the custom drawer to be added
+     * @param gravity The gravity of the custom drawer
+     * @return this
+     */
     fun appendCustomDrawer(view: View, gravity: Int): DrawerBuilder<Parent, Child> {
         this.customDrawerMap[gravity] = view // Use map here as each gravity can only host one drawer
         return this
     }
 
+    /**
+     * Set text for the reset button
+     *
+     * @param text The text for the reset button
+     * @return this
+     */
     fun setResetText(text: String): DrawerBuilder<Parent, Child> {
         this.resetText = text
         return this
     }
 
+    /**
+     * Set color resource for the reset button
+     *
+     * @param color The color for the reset button
+     * @return this
+     */
     fun setResetColor(@ColorRes color: Int): DrawerBuilder<Parent, Child> {
         val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
         this.resetColor = ContextCompat.getColor(act, color)
         return this
     }
 
+    /**
+     * Set text for the apply button
+     *
+     * @param text The text for the apply button
+     * @return this
+     */
     fun setApplyText(text: String): DrawerBuilder<Parent, Child> {
         this.applyText = text
         return this
     }
 
+    /**
+     * Set color resource for the apply button
+     *
+     * @param color The color for the apply button
+     * @return this
+     */
     fun setApplyColor(@ColorRes color: Int): DrawerBuilder<Parent, Child> {
         val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
         this.applyColor = ContextCompat.getColor(act, color)
         return this
     }
 
+    /**
+     * Set the filter items
+     *
+     * @param items The items to be set to FilterDrawer
+     * @return this
+     */
     fun withItems(items: Collection<Parent>): DrawerBuilder<Parent, Child> {
         this.itemList = ArrayList(items)
         return this
     }
 
+    /**
+     * Define a custom layout for the drawer
+     *
+     * @param resLayout The layout resource of the custom layout
+     * @return this
+     */
     fun withDrawerLayout(@LayoutRes resLayout: Int): DrawerBuilder<Parent, Child> {
         val act = this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
@@ -234,6 +315,11 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         return this
     }
 
+    /**
+     * Construct the FilterDrawer
+     *
+     * @return FilterDrawer
+     */
     fun build(): FilterDrawer<Parent, Child> {
         this.activity ?: throw RuntimeException("Please pass an activity reference to the builder first")
 
@@ -265,10 +351,16 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         return FilterDrawer(this, finalDrawerLayout, finalFilterView)
     }
 
+    /**
+     * Internal method for clearing custom drawers with the same gravity as the FilterDrawer
+     */
     private fun clearOverlapDrawers() {
         this.customDrawerMap.remove(this.gravity)
     }
 
+    /**
+     * Internal method for adding custom drawers
+     */
     private fun addCustomDrawers() {
         val drawerLayout = this.drawerLayout ?: return
         customDrawerMap.forEach { (gravity, view) ->
@@ -278,6 +370,9 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
         }
     }
 
+    /**
+     * Internal method for building the FilterDrawer
+     */
     private fun buildFilterDrawer() {
         val act = activity ?: return
         filterView = act.layoutInflater.inflate(R.layout.filter_drawer, this.drawerLayout, false)
