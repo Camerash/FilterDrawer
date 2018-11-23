@@ -31,7 +31,7 @@ abstract class FilterableRecyclerAdapter<Data, Parent, Child> :
     private val refDataList by lazy { dataList }
 
     /**
-     *
+     * Reference to the bound FilterDrawer
      */
     private var filterDrawer: FilterDrawer<Parent, Child>? = null
 
