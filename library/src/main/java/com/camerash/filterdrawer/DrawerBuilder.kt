@@ -1,7 +1,6 @@
 package com.camerash.filterdrawer
 
 import android.app.Activity
-import android.graphics.Color
 import android.os.Build
 import android.support.annotation.ColorRes
 import android.support.annotation.LayoutRes
@@ -27,13 +26,13 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
     internal var activity: Activity? = null
     internal var itemList = listOf<Parent>()
     internal var displayToolbar = true
-    internal var toolbarTitle = "Filters"
+    internal lateinit var toolbarTitle: String
     internal var toolbarMenuResId = 0
 
-    internal var resetText = "RESET"
-    internal var applyText = "APPLY"
-    internal var resetColor = Color.parseColor("#ffcc0000")
-    internal var applyColor = Color.parseColor("#2196F3")
+    internal lateinit var resetText: String
+    internal lateinit var applyText: String
+    internal var resetColor = 0
+    internal var applyColor = 0
 
     private var rootView: ViewGroup? = null
     private var translucentStatusBar = true
@@ -70,6 +69,14 @@ class DrawerBuilder<Parent, Child>() where Parent: ParentItem, Child: ChildItem 
     fun with(@NonNull act: Activity): DrawerBuilder<Parent, Child> {
         this.activity = act
         this.rootView = act.findViewById(android.R.id.content)
+
+        this.toolbarTitle = act.getString(R.string.filters)
+
+        this.resetText = act.getString(R.string.reset_filter)
+        this.applyText = act.getString(R.string.apply_filter)
+
+        this.resetColor = ContextCompat.getColor(act, R.color.default_reset_color)
+        this.applyColor = ContextCompat.getColor(act, R.color.default_apply_color)
 
         return this
     }

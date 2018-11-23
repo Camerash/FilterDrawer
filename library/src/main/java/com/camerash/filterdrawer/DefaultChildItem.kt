@@ -45,7 +45,7 @@ abstract class DefaultChildItem: ChildItem() {
      *
      * @return The color resource id
      */
-    override fun getDefaultBackgroundColorRes(): Int = R.color.transparent
+    override fun getDefaultBackgroundColorRes(): Int = android.R.color.transparent
 
     /**
      * Supply the selected color resource used by ChildItem background

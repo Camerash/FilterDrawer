@@ -3,5 +3,6 @@
     <color name="gray">#EEEEEE</color>
     <color name="black">#000000</color>
     <color name="dark_blue">#1976d2</color>
-    <color name="transparent">#00FFFFFF</color>
+    <color name="default_reset_color">#cc0000</color>
+    <color name="default_apply_color">#2196F3</color>
 </resources>
