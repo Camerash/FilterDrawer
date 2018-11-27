@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'org.jetbrains.dokka-android'
 
 buildscript {
     repositories {
@@ -8,24 +9,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.novoda:bintray-release:0.9'
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
     }
 }
 
-ext.getBintrayCredentials = { ->
-    def bintrayUser = System.getenv('BINTRAY_USER')
-    def bintrayApiKey = System.getenv('BINTRAY_API_KEY')
-
-    if (project.rootProject.file('local.properties').exists()) {
-        Properties localProperties = new Properties()
-        localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-        bintrayUser = localProperties.getProperty('bintrayUser', bintrayUser)
-        bintrayApiKey = localProperties.getProperty('bintrayApiKey', bintrayApiKey)
-    }
-    return [bintrayUser, bintrayApiKey]
-}
-
-def (bintrayUsername, bintrayApiKey) = getBintrayCredentials()
 def VERSION = '1.0.0'
 
 android {
@@ -54,11 +41,14 @@ publish {
     groupId = 'com.camerash'
     artifactId = 'filterdrawer'
     publishVersion = VERSION
-    desc = 'Android plug-and-play filter that slides.'
+    desc = 'Android plug-and-play filter that slides'
     website = 'https://github.com/camerash/filterdrawer'
     licences = ['MIT']
-    bintrayUser = bintrayUsername
-    bintrayKey = bintrayApiKey
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$rootDir/docs"
 }
 
 dependencies {

@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>DiffItemCallback - library</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">com.camerash.filterdrawer</a>&nbsp;/&nbsp;<a href="./index.html">DiffItemCallback</a><br/>
+<br/>
+<h1>DiffItemCallback</h1>
+<code><span class="keyword">interface </span><span class="identifier">DiffItemCallback</span><span class="symbol">&lt;</span><span class="identifier">Data</span><span class="symbol">&gt;</span></code>
+<p>Interface used for adapting DiffCallback to custom data type</p>
+<h3>Parameters</h3>
+<p><a name="Data"></a>
+<code>Data</code> - The class adaping this interface</p>
+<p><strong>Author</strong><br/>
+Camerash</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="has-same-representation.html">hasSameRepresentation</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">hasSameRepresentation</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.DiffItemCallback$hasSameRepresentation(com.camerash.filterdrawer.DiffItemCallback.Data)/item">item</span><span class="symbol">:</span>&nbsp;<a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Provides information on whether the two items looks the same when shown to users
+You should compare resources shown to users here</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-identical.html">isIdentical</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">isIdentical</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.DiffItemCallback$isIdentical(com.camerash.filterdrawer.DiffItemCallback.Data)/item">item</span><span class="symbol">:</span>&nbsp;<a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Provides information on whether the two items are identical at a data level
+You should compare IDs or item-specific variables here</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
