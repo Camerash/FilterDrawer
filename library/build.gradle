@@ -47,7 +47,7 @@ publish {
 }
 
 dokka {
-    outputFormat = 'jekyll'
+    outputFormat = 'html'
     outputDirectory = "$rootDir/docs"
 }
 
