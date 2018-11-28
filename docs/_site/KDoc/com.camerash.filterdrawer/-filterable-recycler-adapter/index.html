@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>FilterableRecyclerAdapter - library</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">com.camerash.filterdrawer</a>&nbsp;/&nbsp;<a href="./index.html">FilterableRecyclerAdapter</a><br/>
+<br/>
+<h1>FilterableRecyclerAdapter</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">FilterableRecyclerAdapter</span><span class="symbol">&lt;</span><span class="identifier">Data</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-diff-item-callback/index.html"><span class="identifier">DiffItemCallback</span></a><span class="symbol">&lt;</span><a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">Parent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-parent-item/index.html"><span class="identifier">ParentItem</span></a><span class="symbol">, </span><span class="identifier">Child</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-child-item/index.html"><span class="identifier">ChildItem</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Adapter</span><span class="symbol">&lt;</span><span class="identifier">ViewHolder</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-filter-drawer/-on-child-select-listener/index.html"><span class="identifier">OnChildSelectListener</span></a><span class="symbol">&lt;</span><a href="index.html#Parent"><span class="identifier">Parent</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#Child"><span class="identifier">Child</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-recycler-adapter-filter/index.html"><span class="identifier">RecyclerAdapterFilter</span></a><span class="symbol">&lt;</span><a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#Parent"><span class="identifier">Parent</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#Child"><span class="identifier">Child</span></a><span class="symbol">&gt;</span></code>
+<p>Base implementation of RecyclerAdapter that is filterable by FilterDrawer</p>
+<h3>Parameters</h3>
+<p><a name="Data"></a>
+<code>Data</code> - Your custom data type that implements DiffItemCallback</p>
+<p><a name="Parent"></a>
+<code>Parent</code> - Your custom parent type that extends ParentItem</p>
+<p><a name="Child"></a>
+<code>Child</code> - Your custom child type that extends ChildItem</p>
+<p><strong>Author</strong><br/>
+Camerash</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-diff-item-callback/index.html">DiffItemCallback</a></p>
+<p><a href="../-recycler-adapter-filter/index.html">RecyclerAdapterFilter</a></p>
+<p><a href="../-filter-recycler-view-diff-callback/index.html">FilterRecyclerViewDiffCallback</a></p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">FilterableRecyclerAdapter</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Base implementation of RecyclerAdapter that is filterable by FilterDrawer</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="data-list.html">dataList</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">dataList</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">&gt;</span></code>
+<p>The list of data with type List</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="bind-filter-drawer.html">bindFilterDrawer</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">bindFilterDrawer</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$bindFilterDrawer(com.camerash.filterdrawer.FilterDrawer((com.camerash.filterdrawer.FilterableRecyclerAdapter.Parent, com.camerash.filterdrawer.FilterableRecyclerAdapter.Child)))/filterDrawer">filterDrawer</span><span class="symbol">:</span>&nbsp;<a href="../-filter-drawer/index.html"><span class="identifier">FilterDrawer</span></a><span class="symbol">&lt;</span><a href="index.html#Parent"><span class="identifier">Parent</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#Child"><span class="identifier">Child</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Binds a FilterDrawer with this RecyclerAdapter</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-item-count.html">getItemCount</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getItemCount</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Return size of filtered list</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-attached-to-recycler-view.html">onAttachedToRecyclerView</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onAttachedToRecyclerView</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$onAttachedToRecyclerView(android.support.v7.widget.RecyclerView)/recyclerView">recyclerView</span><span class="symbol">:</span>&nbsp;<span class="identifier">RecyclerView</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set RecyclerView to have fixed size for filtering</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-child-deselect.html">onChildDeselect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onChildDeselect</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$onChildDeselect(com.camerash.filterdrawer.FilterableRecyclerAdapter.Parent, kotlin.collections.Set((com.camerash.filterdrawer.FilterableRecyclerAdapter.Child)))/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="index.html#Parent"><span class="identifier">Parent</span></a><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$onChildDeselect(com.camerash.filterdrawer.FilterableRecyclerAdapter.Parent, kotlin.collections.Set((com.camerash.filterdrawer.FilterableRecyclerAdapter.Child)))/child">child</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="index.html#Child"><span class="identifier">Child</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method for OnChildSelectListener interface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-child-select.html">onChildSelect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onChildSelect</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$onChildSelect(com.camerash.filterdrawer.FilterableRecyclerAdapter.Parent, kotlin.collections.Set((com.camerash.filterdrawer.FilterableRecyclerAdapter.Child)))/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="index.html#Parent"><span class="identifier">Parent</span></a><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$onChildSelect(com.camerash.filterdrawer.FilterableRecyclerAdapter.Parent, kotlin.collections.Set((com.camerash.filterdrawer.FilterableRecyclerAdapter.Child)))/child">child</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="index.html#Child"><span class="identifier">Child</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method for OnChildSelectListener interface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-detached-from-recycler-view.html">onDetachedFromRecyclerView</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onDetachedFromRecyclerView</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterableRecyclerAdapter$onDetachedFromRecyclerView(android.support.v7.widget.RecyclerView)/recyclerView">recyclerView</span><span class="symbol">:</span>&nbsp;<span class="identifier">RecyclerView</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Unbinds FilterDrawer when detached from RecyclerView</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-reset.html">onReset</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onReset</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method for OnChildSelectListener interface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="unbind-filter-drawer.html">unbindFilterDrawer</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">unbindFilterDrawer</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Unbinds the bound FilterDrawer</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-recycler-adapter-filter/filter.html">filter</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">filter</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.RecyclerAdapterFilter$filter(com.camerash.filterdrawer.RecyclerAdapterFilter.Data, com.camerash.filterdrawer.RecyclerAdapterFilter.Parent, com.camerash.filterdrawer.RecyclerAdapterFilter.Child)/data">data</span><span class="symbol">:</span>&nbsp;<a href="../-recycler-adapter-filter/index.html#Data"><span class="identifier">Data</span></a><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.RecyclerAdapterFilter$filter(com.camerash.filterdrawer.RecyclerAdapterFilter.Data, com.camerash.filterdrawer.RecyclerAdapterFilter.Parent, com.camerash.filterdrawer.RecyclerAdapterFilter.Child)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-recycler-adapter-filter/index.html#Parent"><span class="identifier">Parent</span></a><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.RecyclerAdapterFilter$filter(com.camerash.filterdrawer.RecyclerAdapterFilter.Data, com.camerash.filterdrawer.RecyclerAdapterFilter.Parent, com.camerash.filterdrawer.RecyclerAdapterFilter.Child)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../-recycler-adapter-filter/index.html#Child"><span class="identifier">Child</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Called when filtering of data items happens</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

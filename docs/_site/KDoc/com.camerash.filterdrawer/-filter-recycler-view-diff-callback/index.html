@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>FilterRecyclerViewDiffCallback - library</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">com.camerash.filterdrawer</a>&nbsp;/&nbsp;<a href="./index.html">FilterRecyclerViewDiffCallback</a><br/>
+<br/>
+<h1>FilterRecyclerViewDiffCallback</h1>
+<code><span class="keyword">class </span><span class="identifier">FilterRecyclerViewDiffCallback</span><span class="symbol">&lt;</span><span class="identifier">Data</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-diff-item-callback/index.html"><span class="identifier">DiffItemCallback</span></a><span class="symbol">&lt;</span><a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Callback</span></code>
+<p>DiffUtil Callback used for calculating changes in FilterableRecyclerAdapter</p>
+<h3>Parameters</h3>
+<p><a name="Data"></a>
+<code>Data</code> - Your custom data type that implements DiffItemCallback</p>
+<p><a name="oldDataList"></a>
+<code>oldDataList</code> - The old list of data item</p>
+<p><a name="newDataList"></a>
+<code>newDataList</code> - The new list of data item</p>
+<p><strong>Author</strong><br/>
+Camerash</p>
+<p><strong>See Also</strong><br/>
+<p><a href="#">DiffUtil.Callback</a></p>
+<p><a href="../-diff-item-callback/index.html">DiffItemCallback</a></p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">FilterRecyclerViewDiffCallback</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterRecyclerViewDiffCallback$<init>(kotlin.collections.List((com.camerash.filterdrawer.FilterRecyclerViewDiffCallback.Data)), kotlin.collections.List((com.camerash.filterdrawer.FilterRecyclerViewDiffCallback.Data)))/oldDataList">oldDataList</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.FilterRecyclerViewDiffCallback$<init>(kotlin.collections.List((com.camerash.filterdrawer.FilterRecyclerViewDiffCallback.Data)), kotlin.collections.List((com.camerash.filterdrawer.FilterRecyclerViewDiffCallback.Data)))/newDataList">newDataList</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="index.html#Data"><span class="identifier">Data</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<p>DiffUtil Callback used for calculating changes in FilterableRecyclerAdapter</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="are-contents-the-same.html">areContentsTheSame</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">areContentsTheSame</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterRecyclerViewDiffCallback$areContentsTheSame(kotlin.Int, kotlin.Int)/oldItemPos">oldItemPos</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.FilterRecyclerViewDiffCallback$areContentsTheSame(kotlin.Int, kotlin.Int)/newItemPos">newItemPos</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Return whether two data items looks the same when shown to users</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="are-items-the-same.html">areItemsTheSame</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">areItemsTheSame</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.FilterRecyclerViewDiffCallback$areItemsTheSame(kotlin.Int, kotlin.Int)/oldItemPos">oldItemPos</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.camerash.filterdrawer.FilterRecyclerViewDiffCallback$areItemsTheSame(kotlin.Int, kotlin.Int)/newItemPos">newItemPos</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Return whether two data items are identical at a data level</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-new-list-size.html">getNewListSize</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getNewListSize</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Return the size of the new list of data item</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-old-list-size.html">getOldListSize</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getOldListSize</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Return the size of the old list of data item</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

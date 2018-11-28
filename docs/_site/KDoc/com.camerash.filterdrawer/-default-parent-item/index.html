@@ -1,0 +1,172 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>DefaultParentItem - library</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">com.camerash.filterdrawer</a>&nbsp;/&nbsp;<a href="./index.html">DefaultParentItem</a><br/>
+<br/>
+<h1>DefaultParentItem</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">DefaultParentItem</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-parent-item/index.html"><span class="identifier">ParentItem</span></a></code>
+<p>Default implementation of ChildItem</p>
+<p><strong>Author</strong><br/>
+Camerash</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-child-item/index.html">ChildItem</a></p>
+<p><a href="../-child-adapter/index.html">ChildAdapter</a></p>
+</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-view-holder/index.html">ViewHolder</a></p>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">ViewHolder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-parent-item/-view-holder/index.html"><span class="identifier">ViewHolder</span></a></code>
+<p>Default implementation of the ViewHolder of ParentItem used in the FilterDrawer's RecyclerView</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">DefaultParentItem</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Default implementation of ChildItem</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-default-icon-color-res.html">getDefaultIconColorRes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDefaultIconColorRes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply the color resource of icon used
+when none of the ChildItems under this ParentItem are selected</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-default-text-color-res.html">getDefaultTextColorRes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDefaultTextColorRes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply the color resource used in title text
+when none of the ChildItems under this ParentItem are selected</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-layout-res.html">getLayoutRes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLayoutRes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply default layout resource</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-root-linear-layout-id.html">getRootLinearLayoutId</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRootLinearLayoutId</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply default root LinearLayout id</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-selected-icon-color-res.html">getSelectedIconColorRes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSelectedIconColorRes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply the color resource of icon used
+when one or more ChildItems under this ParentItem are selected</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-selected-text-color-res.html">getSelectedTextColorRes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSelectedTextColorRes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply the color resource used in title text
+when one or more ChildItems under this ParentItem are selected</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-toggle-expand-on-click-view-id.html">getToggleExpandOnClickViewId</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getToggleExpandOnClickViewId</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply the id of the view who is responsible for receiving
+the onClick event for toggling expansion of ParentItem.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-view-holder.html">getViewHolder</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getViewHolder</span><span class="symbol">(</span><span class="identifier" id="com.camerash.filterdrawer.DefaultParentItem$getViewHolder(android.view.View)/v">v</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-view-holder/index.html"><span class="identifier">ViewHolder</span></a></code>
+<p>Supply the default implementation of ViewHolder used by the ParentItem</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-parent-item/allow-select-multiple.html">allowSelectMultiple</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">allowSelectMultiple</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Supply the option of whether the ChildItems of this ParentItem
+can be multi-selected</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-parent-item/get-child-collection.html">getChildCollection</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getChildCollection</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-child-item/index.html"><span class="identifier">ChildItem</span></a><span class="symbol">&gt;</span></code>
+<p>Supply the list of ChildItem under this ParentItem</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-parent-item/get-parent-icon.html">getParentIcon</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getParentIcon</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Supply the drawable icon resource for the ParentItem</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-parent-item/get-parent-title.html">getParentTitle</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getParentTitle</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Supply title for the ParentItem</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

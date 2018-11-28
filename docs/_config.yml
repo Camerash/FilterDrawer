@@ -1,1 +1,18 @@
-theme: jekyll-theme-cayman
+# Setup
+title:        Filter Drawer
+tagline:      Android plug-and-play filter that slides
+baseurl:      ""
+paginate:     1
+locale:       "en"
+
+# About/contact
+author:
+  name:       Camerash
+  url:        https://github.com/Camerash 
+
+# Gems
+gems:
+  - jekyll-paginate
+
+#Others
+markdown: kramdown
