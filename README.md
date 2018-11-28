@@ -17,8 +17,8 @@ The sample app is under `app` directory
 <img src="./docs/assets/demo.gif"/>
 </p>
 
-
-
+## Site
+Check out the [official documentation site](https://camerash.github.io/FilterDrawer/) for KDocs and more.
 
 ## Features
 
