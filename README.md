@@ -1,4 +1,4 @@
-<p align="center"><img src="./assets/logo-black.gif"/></p>
+<p align="center"><img src="./docs/assets/logo-black.gif"/></p>
 
 <p align="center">
     <a href="https://bintray.com/camerash/maven/filterdrawer/_latestVersion"><img src="https://api.bintray.com/packages/camerash/maven/filterdrawer/images/download.svg"/></a>
