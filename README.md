@@ -35,6 +35,16 @@ We will use the implementation in the sample project as examples.
 
 
 
+### 0. Implement
+
+To include `FilterDrawer` in your project, add the following dependency to your app's `build.gradle`:
+
+```
+implementation "com.camerash:filterdrawer:1.0.0"
+```
+
+
+
 ### 1. Extend
 
 Create classes that extends `DefaultParnetItem` and `DefaultChildItem`.
