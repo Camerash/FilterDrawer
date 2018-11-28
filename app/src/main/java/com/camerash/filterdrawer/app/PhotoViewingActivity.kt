@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.bumptech.glide.request.transition.Transition
-import com.camerash.filterdrawer.R
 import com.liuguangqiang.swipeback.SwipeBackLayout
 import kotlinx.android.synthetic.main.activity_photo_viewing.*
 

@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.ImageView
 import com.camerash.filterdrawer.DrawerBuilder
 import com.camerash.filterdrawer.FilterDrawer
-import com.camerash.filterdrawer.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), FilterDrawer.OnFilterControlClickListener, FilterDrawer.OnChildSelectListener<PetFilterCategory, PetFilter> {

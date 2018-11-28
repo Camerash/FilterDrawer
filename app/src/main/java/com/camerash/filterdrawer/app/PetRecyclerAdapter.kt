@@ -9,7 +9,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.camerash.filterdrawer.FilterableRecyclerAdapter
-import com.camerash.filterdrawer.R
 
 class PetRecyclerAdapter(override var dataList: List<Pet>, val callback: (String, ImageView) -> Unit) : FilterableRecyclerAdapter<Pet, PetFilterCategory, PetFilter>() {
 
