@@ -14,8 +14,9 @@
 The sample app is under `app` directory
 
 <p align="center">
-<img src="./assets/demo.gif"/>
+<img src="./docs/assets/demo.gif"/>
 </p>
+
 
 
 
@@ -51,7 +52,7 @@ Create classes that extends `DefaultParnetItem` and `DefaultChildItem`.
 
 These are the classes used to control and configure items in the FilterDrawer.
 
-#### Default Parent Item  ![Parentitem](./assets/parentItem.gif)
+#### Default Parent Item  ![Parentitem](./docs/assets/parentItem.gif)
 
 `ParentItem` serves as the controller for the categories you see in the Filter Drawer.
 

@@ -10,10 +10,6 @@ author:
   name:       Camerash
   url:        https://github.com/Camerash 
 
-# Gems
-gems:
-  - jekyll-paginate
-
 #Others
 markdown: kramdown
 theme: jekyll-theme-cayman
