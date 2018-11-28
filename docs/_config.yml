@@ -1,7 +1,7 @@
 # Setup
 title:        Filter Drawer
 tagline:      Android plug-and-play filter that slides
-baseurl:      ""
+baseurl:      "/FilterDrawer"
 paginate:     1
 locale:       "en"
 
