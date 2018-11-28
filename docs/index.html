@@ -1,25 +1,239 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>library</title>
-<link rel="stylesheet" href="style.css">
-</HEAD>
-<BODY>
-<a href="./index.html">library</a><br/>
-<br/>
-<h3>Packages</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="com.camerash.filterdrawer/index.html">com.camerash.filterdrawer</a></p>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Index</h3>
-<a href="alltypes/index.html">All Types</a>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+  <meta charset="UTF-8">
+  <title>Filter Drawer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+</head>
+
+  <body>
+    <section class="page-header">
+  <img src="../logo-shape-only.gif"/>
+  <h1 class="project-name">Filter Drawer</h1>
+  <h2 class="project-tagline">Android plug-and-play filter that slides</h2>
+  <a href="https://github.com/Camerash/FilterDrawer" class="btn">View on GitHub</a>
+  <a href="KDoc" class="btn">View KDoc</a>
+  <a href="https://github.com/Camerash/FilterDrawer/zipball/master" class="btn">Download .zip</a>
+  <a href="https://github.com/Camerash/FilterDrawer/tarball/master" class="btn">Download .tar.gz</a>
+</section>
+
+    <section class="main-content">
+      
+      <div id="home">
+  <h2>Sample</h2>
+  <p>The sample app is under <code>app</code> directory</p>
+  <p><img src='../assets/demo.gif' alt='Demo' referrerPolicy='no-referrer' /></p>
+  <p>&nbsp;</p>
+  <h2>Features</h2>
+  <ul>
+    <li><strong>Plug-and-play -</strong> Adapt default implementations with your own filters and you are good to go</li>
+    <li><strong>Independent -</strong> Set everything up without modifying your activity&#39;s layout file</li>
+    <li><strong>Customizable -</strong> Extend base class implementations and take control of everything</li>
+    <li><strong>Versatile -</strong> Create your own filters for literally anything</li>
+    <li><strong>Built-in adapter -</strong> So you don&#39;t need to worry about the filtering logic for your recycler
+      view</li>
+
+  </ul>
+  <p>&nbsp;</p>
+  <h2>Usage</h2>
+  <p>We will use the implementation in the sample project as examples.</p>
+  <p>&nbsp;</p>
+  <h3>1. Extend</h3>
+  <p>Create classes that extends <code>DefaultParnetItem</code> and <code>DefaultChildItem</code>.</p>
+  <p>These are the classes used to control and configure items in the FilterDrawer.</p>
+  <h4>Default Parent Item <img src='../assets/parentItem.gif' alt='Parentitem' referrerPolicy='no-referrer' /></h4>
+  <p><code>ParentItem</code> serves as the controller for the categories you see in the Filter Drawer.</p>
+  <p>The default behaviour has already been implemented for you in the class <code>DefaultParentItem</code></p>
+  <p>You need to implement the following required abstract methods when extending the class:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>// Required methods
+override fun getParentIcon(): Int
+override fun getParentTitle(): String
+override fun getChildCollection(): List&lt;ChildItem&gt;
+override fun allowSelectMultiple(): Boolean
+
+// Optional modifiers
+override fun getLayoutRes(): Int
+override fun getRootLinearLayoutId(): Int
+override fun getToggleExpandOnClickViewId(): Int
+override fun getViewHolder(v: View): ViewHolder
+override fun getDefaultTextColorRes(): Int
+override fun getSelectedTextColorRes(): Int
+override fun getDefaultIconColorRes(): Int
+override fun getSelectedIconColorRes(): Int
+</code></pre>
+  <p>The parent class in our pet sample app, namely <code>PetFilterCategory</code>, has the following implementation:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>class PetFilterCategory(val type: FilterType, @DrawableRes val icon: Int, private val childList: List&lt;PetFilter&gt;): DefaultParentItem() {
+
+    enum class FilterType { Kind, Size }
+
+    override fun getParentIcon(): Int = this.icon
+
+    override fun getParentTitle(): String = this.type.name
+
+    override fun getChildCollection(): List&lt;ChildItem&gt; = this.childList
+
+    override fun getSelectedTextColorRes(): Int = R.color.colorPrimary
+
+    override fun allowSelectMultiple(): Boolean = true
+}
+</code></pre>
+  <p>In the above example, the <code>type</code>, <code>icon</code> and the category&#39;s child filters in <code>childList</code>
+    are initialized in the class&#39;s constructor.</p>
+  <p>Note that the method <code>getChildCollection()</code> requires a <code>List</code> of <code>ChildItem</code>.
+    Here we have also defined our own class that extends <code>ChildItem</code> , called <code>PetFilter</code>, which
+    will be explained below.</p>
+  <p>&nbsp;</p>
+  <h4>Default Child Item <img src='../assets/childItem.gif' alt='Childitem' referrerPolicy='no-referrer' /></h4>
+  <p><code>ChildItem</code> serves as the controller for the filters you see under every categories in the Filter
+    Drawer.</p>
+  <p>The default behaviour has already been implemented for you in the class <code>DefaultChildItem</code></p>
+  <p>You need to implement the following required abstract methods when extending the class:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>// Required methods
+override fun getTitle(): String
+override fun getSelectedColorRes(): Int
+
+// Optional modifiers
+override fun getLayoutRes(): Int
+override fun getViewHolder(v: View): ViewHolder
+override fun getDefaultTextColorRes(): Int
+override fun getSelectedTextColorRes(): Int
+override fun getDefaultBackgroundColorRes(): Int
+override fun getSelectedBackgroundColorRes(): Int
+</code></pre>
+  <p>The child class in our pet sample app, namely <code>PetFilter</code>, has the following implementation:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>class PetFilter(val filter: Enum&lt;*&gt;) : DefaultChildItem() {
+
+    enum class Kind { Cats, Dogs, Rabbits, Hamsters, Birds }
+    
+    enum class Size { Small, Medium, Large }
+
+    override fun getTitle(): String = this.filter.name
+
+    override fun getSelectedTextColorRes(): Int = R.color.colorPrimary
+}
+</code></pre>
+  <p>As we have two types of filters, <code>Kind</code> and <code>Size</code>, we defined the suitable enum classes and
+    instantiate<code>PetFilter</code> with an <code>Enum</code> called <code>filter</code>, which serves as the
+    filter&#39;s identification.</p>
+  <p>&nbsp;</p>
+  <h3>2. Build</h3>
+  <p>After finishing the above parent and child classes, we can build the filter using <code>DrawerBuilder</code>.</p>
+  <p><code>DrawerBuilder</code> requires two types to instantiate, which each extends <code>ParentItem</code> and <code>ChildItem</code>
+    respectively.</p>
+  <p>For our example, we first construct our filter list:</p>
+  <pre><code class='language-kotlin' lang='kotlin'> private fun constructFilterItems(): ArrayList&lt;PetFilterCategory&gt; {
+
+     val pet = PetFilterCategory(PetFilterCategory.FilterType.Kind, R.drawable.round_pets_24, PetFilter.Kind.values().map { PetFilter(it) })
+
+     val animal = PetFilterCategory(PetFilterCategory.FilterType.Size, R.drawable.round_size_24, PetFilter.Size.values().map { PetFilter(it) })
+
+     return arrayListOf(pet, animal)
+ }
+</code></pre>
+  <p>Then construct our <code>FilterDrawer</code> in the <code>onCreate</code> method of your activity:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>val filterDrawer = DrawerBuilder&lt;PetFilterCategory, PetFilter&gt;(this)
+                    .displayToolbar(true)
+                    .withItems(constructFilterItems())
+                    .build()
+</code></pre>
+  <p>This builds our <code>FilterDrawer</code> and automatically adds it to the activity.</p>
+  <p>Up to this point, you should be able to run your app and check out the <code>FilterDrawer</code> by swiping from
+    the right of the screen.</p>
+  <p>&nbsp;</p>
+  <h3>3. Filter</h3>
+  <p>Our filter is ready, but there are yet to have things to be filtered.</p>
+  <p>Let&#39;s create a class named <code>Pet</code>. To utilize the built-in <code>FilterableRecyclerAdapter</code>
+    later on, we need to implement the <code>DiffItemCallback&lt;T&gt;</code> interface as follows:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>class Pet(val name: String, val imageUrl: String, val kind: PetFilter.Kind, val size: PetFilter.Size) : DiffItemCallback&lt;Pet&gt; {
+    override fun isIdentical(item: Pet): Boolean {
+        return name == item.name
+    }
+
+    override fun hasSameRepresentation(item: Pet): Boolean {
+        return imageUrl == item.imageUrl
+    }
+}
+</code></pre>
+  <p><code>isIdentical</code> provides information on whether the two items <em>are identical at a data level</em>. You
+    should compare IDs or item-specific variables here.</p>
+  <p><code>hasSameRepresentation</code> provides information on whether the two items <em>looks the same</em> when
+    shown to users. You should compare resources shown to users here.</p>
+  <p>The built-in adapter compare items by using the platform-provided<code>DiffUtil.Callback()</code>, where our <code>isIdentical</code>
+    interface is called in its <code>areItemsTheSame</code> method, and <code>hasSameRepresentation</code> is called in
+    its <code>areContentsTheSame</code> method.</p>
+  <p>For more informations, check out the library&#39;s source code, or <a href='https://developer.android.com/reference/android/support/v7/util/DiffUtil.Callback'>the
+      official documentation on DiffUtil</a>.</p>
+  <p>&nbsp;</p>
+  <p>Next, let&#39;s create our adapter by extending the built-in <code>FilterableRecyclerAdapter</code>. The adapter
+    looks more or less the same with a typical recycler adapter, with the exception of the method <code>filter</code>
+    which you will need to implement.</p>
+  <p>In out example, the implementation of method <code>filter</code> would look like this:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>override fun filter(data: Pet, parent: PetFilterCategory, child: PetFilter): Boolean {
+    return child.filter == when (parent.type) {
+        PetFilterCategory.FilterType.Kind -&gt; data.kind
+        PetFilterCategory.FilterType.Size -&gt; data.size
+    }
+}
+</code></pre>
+  <p><code>filter</code> will get called whenever the filters in <code>FilterDrawer</code> is updated. In the code
+    above, it returns whether the given <code>Pet</code> matches the given <code>PetFilter</code> under certain <code>PetFilterCategory</code>.</p>
+  <p>All nested checkings are done under the hood, so all we need to worry about is whether the given <code>Pet</code>
+    matches the <em>single</em> given <code>PetFilter</code>.</p>
+  <p>&nbsp;</p>
+  <p>Finally, setup the your <code>RecyclerView</code> with our adapter, and pass a reference of our <code>FilterDrawer</code>
+    to the adapter by:</p>
+  <pre><code class='language-kotlin' lang='kotlin'>adapter.bindFilterDrawer(filterDrawer)
+</code></pre>
+  <p>and you are all set!</p>
+  <p>&nbsp;</p>
+  <h2>Customization</h2>
+  <p>Please refer to the <a href='https://camerash.github.io/FilterDrawer/KDoc'>KDoc here</a> to familiarize
+    yourself with the base implementations.</p>
+  <p>Follow the default implementation to extend <code>ParentItem</code> and <code>ChildItem</code> would also be a
+    good start for your customization.</p>
+  <p>&nbsp;</p>
+  <h2>API</h2>
+  <p><a href='https://camerash.github.io/FilterDrawer/KDoc'>Please refer to the KDoc here</a></p>
+  <p>&nbsp;</p>
+  <h2>Library used</h2>
+  <ul>
+    <li><a href='https://github.com/mikepenz/Materialize'>Materialize</a> by <a href='https://github.com/mikepenz'>Mike
+        Penz</a></li>
+    <li><a href='https://github.com/cachapa/ExpandableLayout'>ExpandableLayout</a> by <a href='https://github.com/cachapa'>Daniel
+        Cachapa</a></li>
+
+  </ul>
+  <p>&nbsp;</p>
+  <h2>Developed By</h2>
+  <ul>
+    <li>Esmond Wong (Camerash)</li>
+    <li><a href='mailto:esmond9981127@gmail.com' target='_blank' class='url'>esmond9981127@gmail.com</a></li>
+    <li><a href='https://www.paypal.me/camerash'>paypal.me/camerash</a></li>
+  </ul>
+  <p>&nbsp;</p>
+  <h2>Contribution</h2>
+  <p>Feel free to open issues if there are any suggestions or bugs.</p>
+  <p>Contribution by opening pull requests are also welcomed!</p>
+  <p>&nbsp;</p>
+  <h2>License</h2>
+  <p>MIT © <a href='https://github.com/Camerash'>Camerash</a></p>
+  </body>
+
+  </html>
+</div>
+
+      <footer class="site-footer">
+  <span class="site-footer-owner"><a href="https://github.com/Camerash/FilterDrawer">Filter Drawer</a> is maintained by <a href="https://github.com/Camerash">Camerash</a>.</span>
+  <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+</footer>
+
+
+    </section>
+
+  </body>
+</html>
