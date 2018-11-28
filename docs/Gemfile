@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'jekyll'
+gem 'github-pages', group: :jekyll_plugins
 gem 'kramdown'
 gem 'pygments.rb'
+gem 'jekyll-theme-cayman'

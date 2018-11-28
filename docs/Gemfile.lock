@@ -32,9 +32,13 @@ GEM
       pathutil (~> 0.9)
       rouge (>= 1.7, < 4)
       safe_yaml (~> 1.0)
-    jekyll-paginate (1.1.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
+    jekyll-seo-tag (2.5.0)
+      jekyll (~> 3.3)
+    jekyll-theme-cayman (0.1.1)
+      jekyll (~> 3.5)
+      jekyll-seo-tag (~> 2.0)
     jekyll-watch (2.1.2)
       listen (~> 3.0)
     kramdown (1.17.0)
@@ -70,7 +74,7 @@ DEPENDENCIES
   bundler (~> 1.12)
   jekyll
   jekyll-cayman-theme!
-  jekyll-paginate
+  jekyll-theme-cayman
   kramdown
   pygments.rb
   rake (~> 10.0)
