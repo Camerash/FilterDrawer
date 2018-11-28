@@ -13,7 +13,9 @@
 
 The sample app is under `app` directory
 
-![Demo](./assets/demo.gif)
+<p align="center">
+<img src="./assets/demo.gif"/>
+</p>
 
 
 
@@ -255,7 +257,7 @@ Contribution by opening pull requests are also welcomed!
 
 - Esmond Wong (Camerash)
 - esmond9981127@gmail.com
-- paypal.me/camerash](https://www.paypal.me/camerash)
+- [paypal.me/camerash](https://www.paypal.me/camerash)
 
 
 
